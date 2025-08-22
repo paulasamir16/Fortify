@@ -35,7 +35,7 @@
 
 ### Static Application Security Testing (SAST)
 + OpenText™ Static Application Security Testing (OpenText SAST) [Static Code Analyzer (SCA)](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)
-+ [OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)
++ [OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-software-security-center/)
   + Fortify ScanCentral SAST Controller
   + Fortify ScanCentral SAST sensors
   + Fortify ScanCentral SAST client
@@ -59,7 +59,7 @@
 
 <br/>
 
-### [Fortify Software Security Center (SSC)] [SSC Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/)
+### Fortify Software Security Center (SSC) [SSC-Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/)
 + It's a browser-based application that provides a set of capabilities across the software development life cycle to automate detection of security vulnerabilities in applications. It helps your security and development teams work together to resolve security flaws quickly and accurately by making correlated data available from the following products:
   + OpenText™ Static Application Security Testing (OpenText SAST)
   + OpenText™ Fortify ScanCentral SAST
@@ -77,6 +77,12 @@
 #### Application Security Aviator
 + An AI code security tool that executes fast auditing, identification, and automated code fix suggestions for SAST vulnerabilities with the power of AI.
 + It embeds into your dev environment, using AI code analysis to continuously monitor code for security issues, and provides contextual explanations and tailored code fix suggestions.
+
+
+## Installation Best Practice
+
+
+
 
 
 
