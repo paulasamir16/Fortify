@@ -36,14 +36,14 @@
 + Restart your Tomcat server.
 + Open config.properties inside <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes and edit it. [U know what needs to edit]
 + Review these
-  +	About the pool_mapping_mode Property (microfocus.com)
-  +	Encrypting the Shared Secret on the Controller (microfocus.com)
-  +	Avoiding Read Timeout Errors (microfocus.com)
+  +	About the pool_mapping_mode Property [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
+  +	Encrypting the Shared Secret on the Controller [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
+  +	Avoiding Read Timeout Errors [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/avoid-timeout.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____3)
 + Start the controller
   + Open cmd
     + cd <controller_install_dir>/tomcat/bin
       + startup.bat
-+ Review Fortify ScanCentral SAST API (microfocus.com)
++ Review Fortify ScanCentral SAST API [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
 
 <br/>
 
@@ -51,20 +51,32 @@
 + Download and extract Fortify_SCA_<version>_windows_x64
 + Click on Fortify_SCA_<version>_windows_x64.exe
 + Open cmd
-  +	cd <sca_install_dir>\bin\
-  +	fortifyupdate
-  +	scapostinstall
+  ```
+  cd <sca_install_dir>\bin\
+  ```
+  ```
+  fortifyupdate
+  ```
+  ```
+  scapostinstall
+  ```
     +	Edit SSC Settings
 + Edit worker.properties
 + Open cmd
-  +	cd <sca_install_dir>\bin\scancentral-worker-service
-  +	setupworkerservice.bat <sca_version> <controller_url> <shared_secret>
-  + setupworkerservice.bat <sca_version> <controller_url> "<encrypted_shared_secret>" <path_to_pwtool.keys_file>
+  ```
+  cd <sca_install_dir>\bin\scancentral-worker-service
+  ```
+  ```
+  setupworkerservice.bat <sca_version> <controller_url> <shared_secret>
+  ```
+  ```
+  setupworkerservice.bat <sca_version> <controller_url> "<encrypted_shared_secret>" <path_to_pwtool.keys_file>
+  ```
 + Start the sensor
-  + Set service to Automatic and Logon as Local System then enable Allow service to …….
+  + Set service to Automatic and Logon as Local System then enable Allow service to
   + Start FortifyScanCentralWorkerService service
-+ Review Configuring Sensors (microfocus.com)
-+ Add certificate to SCA Adding Trusted Certificates (microfocus.com)
++ Review Configuring Sensors [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
++ Add certificate to SCA Adding Trusted Certificates [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
 
 <br/>
 
@@ -86,7 +98,7 @@
 <br/>
 
 ### Audit Assistant (AA) Deployment
-+ Login to Fortify Audit Assistant and create a token, and a policy
++ Login to [Fortify Audit Assistant](https://analytics.fortify.com/login) and create a token, and a policy
 + Open SSC -> Administrator -> Configuration -> Audit Assistant (AA)
 + Enable AA and put the token that you got from the link above
 + Choose the policy and Enable AA auto-apply, and auto-predict
@@ -110,7 +122,6 @@
 +	Next -> Finish
 +	Accept restart eclipse after finish the installation
 
-<br/>
 
 ##### Fortify Security Assistant
 +	Help > Install New Software
@@ -119,7 +130,6 @@
 +	Next -> Finish
 +	Accept restart eclipse after finish the installation
 
-<br/>
 
 ##### Fortify Remediation Plugin
 +	Help > Install New Software.
