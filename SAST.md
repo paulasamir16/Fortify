@@ -1,0 +1,207 @@
+
+### Here we will install
++ Install SAST Controller
++ Install SAST SCA (Sensor) & Client
++ Install Plugins
++ Install Audit Assistant (AA)
+
+<br/>
+
+###$ ScanCentral SAST Controller
++ Log on to Windows as a local user with administrative permissions.
++ Download & extract the contents of the Fortify_ScanCentral_Controller_<version>_x64.zip in C:\Programs Files\Fortify
++ Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured.
++ Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the <controller_install_dir>\tomcat directory.
++ Navigate to the <controller_install_dir>\tomcat\bin directory, and then run the following:
+  + service.bat install ScanCentralController
++ Configuring Java Memory for the Service
+  + Run tomcat9w.exe
+  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value.
+  + Restart the service.
++ Create secure connection with Apache Tomcat
+  ```
+  keytool -genkey -alias “mykey” -keyalg RSA -keystore C:\mykeystore
+  ```
+  ```	
+  keytool -export -alias “mykey” -keystore C:\mykeystore -file "mycert.cer"
+  ```
++ Add the following connector to the server.xml file in the tomcat/conf directory:
+  ```
+  <Connector port="8443" maxThreads="200"
+  scheme="https" secure="true" SSLEnabled="true"
+  keystoreFile="<mykeystore>" keystorePass="<mypassword>"
+  clientAuth="false" sslProtocol="TLS"/>
+  ```
++ Open config.properties inside <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes and edit url to “this_url=https://<controller_host>:8443/scancentral-ctrl”
++ Restart your Tomcat server.
++ Open config.properties inside <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes and edit it. [U know what needs to edit]
++ Review these
+  +	About the pool_mapping_mode Property (microfocus.com)
+  +	Encrypting the Shared Secret on the Controller (microfocus.com)
+  +	Avoiding Read Timeout Errors (microfocus.com)
++ Start the controller
+  + Open cmd
+    + cd <controller_install_dir>/tomcat/bin
+      + startup.bat
++ Review Fortify ScanCentral SAST API (microfocus.com)
+
+
+#### Install SCA as a ScanCentral SAST Sensors
++ Download and extract Fortify_SCA_<version>_windows_x64
++ Click on Fortify_SCA_<version>_windows_x64.exe
++ Open cmd
+  +	cd <sca_install_dir>\bin\
+  +	fortifyupdate
+  +	scapostinstall
+    +	Edit SSC Settings
++ Edit worker.properties
++ Open cmd
+  +	cd <sca_install_dir>\bin\scancentral-worker-service
+  +	setupworkerservice.bat <sca_version> <controller_url> <shared_secret>
+  + setupworkerservice.bat <sca_version> <controller_url> "<encrypted_shared_secret>" <path_to_pwtool.keys_file>
++ Start the sensor
+  + Set service to Automatic and Logon as Local System then enable Allow service to …….
+  + Start FortifyScanCentralWorkerService service
++ Review Configuring Sensors (microfocus.com)
++ Add certificate to SCA Adding Trusted Certificates (microfocus.com)
+
+<br/>
+
+#### ScanCentral SAST Clients [Installed with SCA]
++ Enter <sca_install_dir>/Core/config and open client.properties
++ Set the same value for the client_auth_token that you set for the client_auth_token on the Controller [in the <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties file]
+
+<br/>
+
+#### ScanCentral SAST Clients [Installed without SCA]
++ Download & extract the contents of the Fortify_ScanCentral_Client_<version>_x64.zip
++ Add the <client_install_dir>/bin to your PATH environment variable.
++ Add the JAVA_HOME environment variable
+  + Important! If you have a Java 8 project that fails to build because Fortify ScanCentral SAST requires Java 11 or later to run, set the SCANCENTRAL_JAVA_HOME environment variable to point a supported version of Java.
++ Open <client_install_dir>/Core/config/client.properties in a text editor.
++ Set the same value for the client_auth_token property that you set for the client_auth_token property on the Controller (in the <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties file).
++ Save the file
+
+<br/>
+
+#### Audit Assistant (AA) Deployment
++ Login to Fortify Audit Assistant and create a token, and a policy
++ Open SSC -> Administrator -> Configuration -> Audit Assistant (AA)
++ Enable AA and put the token that you got from the link above
++ Choose the policy and Enable AA auto-apply, and auto-predict
+
+##### Configuring Audit Assistant Custom Tags
++ This is a message that clarifies the status of the issue and it is something between these 3 things:
+  + Not an issue
+  + Not predicted
+  + Exploitable
++ And you can make this configuration through
+  + SSC -> Administration -> Templates -> Custom Tags -> Edit Analysis
+
+<br/>
+
+#### Plugins for Eclipse [Fortify SCA, Fortify Security Assistant, Fortify Remediation Plugin]
+##### Fortify SCA
++	Help > Install New Software
++	Click Add and choose Local then locate the Eclipse plugin folder
++	Select All
++	Next -> Finish
++	Accept restart eclipse after finish the installation
+
+<br/>
+
+##### Fortify Security Assistant
++	Help > Install New Software
++	Click Add and choose Archive then locate the Security Assistant plugin zip file
++	Select All
++	Next -> Finish
++	Accept restart eclipse after finish the installation
+
+<br/>
+
+##### Fortify Remediation Plugin
++	Help > Install New Software.
++	Click Add.
++	In the Location box, type https://tools.fortify.com/ssceclipseplugin
++	Click Add.
++	Click Select All and then click Next.
++	Click Finish.
++	Click Restart
+
+> Verify License in eclipse
+> + Fortify -> Manage License
+
+<br/>
+
+#### Plugins for Visual Studio [Fortify SCA, Fortify Security Assistant, SAST]
++	Open Visual Studio -> Extensions -> Manage Extensions
++	Search for Fortify
++	Install the 2 plugins
+  +	SAST
++	Eclipse -> Fortify -> Options -> SAST Configuration
++	Get the token key from SSC -> Administration -> Users -> Token Management -> NEW -> ToolsConnectToken
+
+<br/>
+
+#### Plugin for IDEA or Android Studio
++	Start IntelliJ IDEA or Android Studio
++	Choose Plugin -> Settings
++	Select Install Plugin from Disk, browse to the <tools_install_dir>/plugins/IntelliJAnalysis directory, and then select Fortify_IntelliJ_Analysis_Plugin_<version>.zip.
++	Click OK the restart
+
+
+#### Bug Trackers in SSC
+> System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server.
+> + SSC -> Administrator -> Plugins -> Bug Tracking Plugins
+> + NEW -> Choose Plugin from <ssc_install_dir>/<ssc_install_WAR_Tomcat>/Plugins/<BugTrackerPlugin_Name>
+
+<br/>
+
+#### Fortify Plugin for Jenkins
++	Install Fortify from Manage Jenkins > Manage Plugins -> Available tab -> In the Filter box, type Fortify
++	Create 2 token [CIToken, ScanCentralCtrlToken] from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them.
++	Install Missing Maven Plugins
+
+<br/>
+
+#### Github
++ Create a personal access token with enable these points
++ GitHub -> Your login -> Settings -> Developer settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
+  + Repo                 -------------->    Full control of private repositories
+  + workflow             -------------->  	Update GitHub Action workflows
+  + admin:repo_hook      -------------->	  Full control of repository hooks
+  + admin:org_hook       -------------->  	Full control of organization hooks
+  + gist                 -------------->  	Create gist
+  + notifications        -------------->	  Access notifications
+  + delete_repo          -------------->	  Delete repositories
+  + project              -------------->	  Full control of projects
++ Save the token in text file
++ Configuring Webhook on GitHub
++ In the GitHub Repository -> Settings -> Webhooks -> Add webhook -> Payload URL [(Jenkins URL)/github-webhook/] -> application/json -> Let me select individual events [Pull requests] -> Add webhook
+
+
+##### Configure Jenkins to use GitHub
++ Jenkins -> Manage Jenkins -> Configure System -> Add GitHub Server -> GitHub Server -> fill inputs -> + Add -> Jenkins -> Kind [Secret text] -> fill inputs -> Add -> Choose the Credentials -> Test the connection -> Save
+
+#### GitLab
++ Create a project access token in GitLab
+  + In Repo page, Click on Settings -> Access Tokens -> Enable the 'api' -> Create project access token -> Copy the token
++ Create a Personal Access Token
+  + Click on your account icon -> Preferences -> Access Tokens -> Enable the 'api' -> Create personal access token -> Copy the token
++ Integrate Jenkins with GitLab
+  + In Repo page, Click on Settings -> Integrations -> Jenkins -> Enable (Merge request, Tag push) -> Disable the SSL verification -> Test settings -> Save Changes
+
+##### Configure Jenkins to use GitLab
++ Install the GitLab plugin
+  + In Jenkins, Click on Manage Jenkins -> Manage Plugins -> Enable GitLab (Build Triggers) -> Click Download now and install after restart -> Restart
++ Configure GitLab
+  + Manage Jenkins -> Configure System -> In GitLab section -> +Add -> Jenkins -> GitLab API token [Put ur personal token] -> Add -> Test Connection -> Save
+
+
+
+
+
+
+
+
+
