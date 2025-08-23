@@ -1,4 +1,4 @@
-# Here We will talk about Fortify Software Security Center and its database installation and configuration.
+# Here, we will talk about Fortify Software Security Center and its database installation, configuration and upgrade.
 > [!NOTE]
 > Opentext Fortify supports many operating system [Supported platforms and architectures](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-platforms.htm?TocPath=System%2520requirements%257C_____2) and aslo supports many dbs [Supported Databases](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-db.htm?TocPath=System%2520requirements%257C_____4) but here you will install it on Windows Server and use SQL Server.
 
