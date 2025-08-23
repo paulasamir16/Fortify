@@ -2,6 +2,12 @@
 > [!NOTE]
 > Opentext Fortify supports many operating system [Supported platforms and architectures](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-platforms.htm?TocPath=System%2520requirements%257C_____2) and aslo supports many dbs [Supported Databases](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-db.htm?TocPath=System%2520requirements%257C_____4) but here you will install it on Windows Server and use SQL Server.
 
+> [!NOTE]
+> Here are 3 methods to deploy Fortify Software Security Center (SSC)
+> 1. Manual (Here, we talk about this method)
+> 2. Automated
+> 3. In Kubernetes
+
 <br/>
 
 ### Install & Configure Microsoft SQL Server Database
@@ -57,8 +63,12 @@
     keystoreFile="<mykeystore>" keystorePass="<mypassword>"
     clientAuth="false" sslProtocol="TLS"/>
     ```
-  + cd C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin
-  + startup
+    ```
+    cd C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin
+    ```
+    ```
+    startup
+    ```
 + Configure Tomcat to use secure and HttpOnly flags
   + Edit tomcat/conf/web.xml
     ```
