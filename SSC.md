@@ -81,11 +81,11 @@
 + Open https://[IP]:8443/ssc on browser
 > [!NOTE]
 > You can use a hostname instead of IP by configure the hosts file [C:\Windows\System32\drivers\etc\hosts]
-  ```
-  [IP]         [hostname]
-  #Example:
-  10.10.3.6    sscmanager.com
-  ```
+>  ```
+>  [IP]         [hostname]
+> 
+>  10.10.3.6    sscmanager.com
+>  ```
 + Put token key from C:\Fortify\init.token, Next
 + Upload the license, Next
 + SSC URL: ```https://[IP]:8443/ssc```, Next
