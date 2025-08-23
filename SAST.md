@@ -1,13 +1,13 @@
 
-### Here we will install
-+ Install SAST Controller
-+ Install SAST SCA (Sensor) & Client
-+ Install Plugins
-+ Install Audit Assistant (AA)
+## Here we will install
++ ScanCentral SAST Controller
++ SAST SCA (Sensor) & Client
++ Plugins
++ Audit Assistant (AA)
 
 <br/>
 
-###$ ScanCentral SAST Controller
+### Install ScanCentral SAST Controller
 + Log on to Windows as a local user with administrative permissions.
 + Download & extract the contents of the Fortify_ScanCentral_Controller_<version>_x64.zip in C:\Programs Files\Fortify
 + Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured.
@@ -45,8 +45,9 @@
       + startup.bat
 + Review Fortify ScanCentral SAST API (microfocus.com)
 
+<br/>
 
-#### Install SCA as a ScanCentral SAST Sensors
+### Install SCA as a ScanCentral SAST Sensors
 + Download and extract Fortify_SCA_<version>_windows_x64
 + Click on Fortify_SCA_<version>_windows_x64.exe
 + Open cmd
@@ -67,13 +68,13 @@
 
 <br/>
 
-#### ScanCentral SAST Clients [Installed with SCA]
+### Install ScanCentral SAST Clients [Installed with SCA]
 + Enter <sca_install_dir>/Core/config and open client.properties
 + Set the same value for the client_auth_token that you set for the client_auth_token on the Controller [in the <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties file]
 
 <br/>
 
-#### ScanCentral SAST Clients [Installed without SCA]
+### Install ScanCentral SAST Clients [Installed without SCA]
 + Download & extract the contents of the Fortify_ScanCentral_Client_<version>_x64.zip
 + Add the <client_install_dir>/bin to your PATH environment variable.
 + Add the JAVA_HOME environment variable
@@ -84,13 +85,13 @@
 
 <br/>
 
-#### Audit Assistant (AA) Deployment
+### Audit Assistant (AA) Deployment
 + Login to Fortify Audit Assistant and create a token, and a policy
 + Open SSC -> Administrator -> Configuration -> Audit Assistant (AA)
 + Enable AA and put the token that you got from the link above
 + Choose the policy and Enable AA auto-apply, and auto-predict
 
-##### Configuring Audit Assistant Custom Tags
+#### Configuring Audit Assistant Custom Tags
 + This is a message that clarifies the status of the issue and it is something between these 3 things:
   + Not an issue
   + Not predicted
@@ -100,6 +101,7 @@
 
 <br/>
 
+### Install Plugins
 #### Plugins for Eclipse [Fortify SCA, Fortify Security Assistant, Fortify Remediation Plugin]
 ##### Fortify SCA
 +	Help > Install New Software
@@ -149,6 +151,7 @@
 +	Select Install Plugin from Disk, browse to the <tools_install_dir>/plugins/IntelliJAnalysis directory, and then select Fortify_IntelliJ_Analysis_Plugin_<version>.zip.
 +	Click OK the restart
 
+<br/>
 
 #### Bug Trackers in SSC
 > System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server.
@@ -182,6 +185,8 @@
 
 ##### Configure Jenkins to use GitHub
 + Jenkins -> Manage Jenkins -> Configure System -> Add GitHub Server -> GitHub Server -> fill inputs -> + Add -> Jenkins -> Kind [Secret text] -> fill inputs -> Add -> Choose the Credentials -> Test the connection -> Save
+
+<br/>
 
 #### GitLab
 + Create a project access token in GitLab
