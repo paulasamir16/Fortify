@@ -1,4 +1,4 @@
-# Fortify Deployment & Maintenance
+# OpenText Fortify Application Security
 
 **Welcome to the Fortify Application Security GitHub repository.**
 > This project is dedicated to documenting the definition, deployment and maintenance processes of Fortify platform.
