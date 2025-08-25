@@ -8,16 +8,15 @@
 
 ### LIM Installation
 + Install Hyper-V and containers from Server Manager
-+ Download & Install Docker Engine version 24.0.5 [Docker-URL](https://docs.docker.com/engine/install/binaries/)
++ Download & Install Docker Engine —— [Docker-URL](https://docs.docker.com/engine/install/binaries/)
 + Add docker path to environment variables
-+ Install LIM
-  + Installing IIS, ASP.NET, .NET Framework, and Hyper-V from Server Manager
-    + Web Server (IIS)
-    + IIS Management Scripts and Tools (under Management Tools)
-    + On the Features window, under .NET Framework 4.8 Features, select .NET Framework and ASP.NET, and Containers
-    + On the Role Services window under Application Development, select ASP.NET
-    + In the Edit Site Binding dialog box in IIS, add a host name for the HTTPS binding
-  + Sign up at Docker Hub then send your docker ID to this mail ```mfi-fortifydocker@opentext.com``` to join docker group and pull LIM image
++ Installing IIS, ASP.NET, .NET Framework, and Hyper-V from Server Manager
+  + Web Server (IIS)
+  + IIS Management Scripts and Tools (under Management Tools)
+  + On the Features window, under .NET Framework 4.8 Features, select .NET Framework and ASP.NET, and Containers
+  + On the Role Services window under Application Development, select ASP.NET
+  + In the Edit Site Binding dialog box in IIS, add a host name for the HTTPS binding
++ Sign up at Docker Hub then send your docker ID to this mail ```mfi-fortifydocker@opentext.com``` to join docker group and pull LIM image
   + Pull a LIM Docker image to host machine
     + Open PowerShell and login to docker by ```docker login``` and then pull the image
       ```
@@ -60,8 +59,8 @@
       ```
       docker run -v c:/lim:c:/lim -d -p 443:443 --restart always --env-file c:\lim\LimDocker.env --memory=8g --cpus=2 --name lim fortifydocker/lim:23.2
       ```
-    + Access LIM with this url
-      + http://<IP_Address>:<Port>/LIM.Admin
+    + Access LIM with this URL
+      + ```http://<IP_Address>:<Port>/LIM.Admin```
     + Active and update LIM
       + To Activate LIM
         + Select ADMIN -> SERVER CONFIGURATION -> Activation
@@ -116,8 +115,8 @@
   pull-and-start-containers.ps1
   ```
 + Log in to Fortify SSC and enable ScanCentral DAST in the ADMINISTRATION view
-  + http://<DAST_API_Hostname>:<Port>/api/
-  + http://<DAST_API_IP_Address>:<Port>/api/
+  + ```http://<DAST_API_Hostname>:<Port>/api/```
+  + ```http://<DAST_API_IP_Address>:<Port>/api/```
 
 
 ```
@@ -135,7 +134,7 @@ pull-and-start-twofactorauth-container.ps1
 <br/>
 
 ### Install Webinspect
-+ Right click on webinspect exe/msi to install, click next next
++ Right click on webinspect exe/msi to install, click Next, Next
 + Connect to DB Server with create new db and choose SQL Auth
 + Connect to LIM to activate webinspect or activate it directly
 + Configure and start the WebInspect REST API
