@@ -8,11 +8,11 @@
 
 ### LIM Installation
 + Install Hyper-V and containers from Server Manager
-+ Download & Install Docker Engine —— [Docker-URL](https://docs.docker.com/engine/install/binaries/)
++ Download & Install Docker Engine — [Docker-URL](https://docs.docker.com/engine/install/binaries/)
 + Add docker path to environment variables
 + Installing IIS, ASP.NET, .NET Framework, and Hyper-V from Server Manager
   + Web Server (IIS)
-  + IIS Management Scripts and Tools (under Management Tools)
+  + IIS Management Scripts and Tools — under Management Tools
   + On the Features window, under .NET Framework 4.8 Features, select .NET Framework and ASP.NET, and Containers
   + On the Role Services window under Application Development, select ASP.NET
   + In the Edit Site Binding dialog box in IIS, add a host name for the HTTPS binding
@@ -26,7 +26,7 @@
       docker pull fortifydocker/lim:23.2
       ```
   + Create a directory on host machine that is easily identifiable. For example: ```C:\lim```
-  + Create and configure the Environment File ```LimDocker.evn``` inside C:\lim folder
+  + Create and configure the Environment File ```LimDocker.evn``` inside ```C:\lim``` folder
     + File Example:
       ```
       #!-- LIM Docker env file. --!
@@ -51,7 +51,7 @@
         ```
         docker container ls -a
         ```
-    + If the LimDocker.env file includes the setting LimUseSSL=true and IIS is installed on the host where the Docker container will be running, then the following example runs the container with SSL
+    + If the ```LimDocker.env``` file includes the setting ```LimUseSSL=true``` and IIS is installed on the host where the Docker container will be running, then the following example runs the container with SSL
       ```
       docker run -v c:/lim:c:/lim -d -p 8443:443 --restart always --env-file c:\lim\LimDocker.env --memory=8g --cpus=2 --name lim fortifydocker/lim:23.2
       ```
@@ -75,7 +75,7 @@
       +	Type a User Name
       +	Type a Login Name
       +	Type an Email Address for the administrator
-      +	To enable the LIM to send email notification of certain events to the administrator, select Receives Email.
+      +	To enable the LIM to send email notification of certain events to the administrator, select Receives Email
       +	Enter and confirm a Password
       +	To send the administrator email notification of the new account, select Send Welcome Email
       +	Adding a License
@@ -95,13 +95,13 @@
 <br/>
 
 ### Install ScanCentral DAST Components
-+ Download DAST file from SLD “ScanCentral DAST 23.2.0”
++ Download DAST file from SLD ```ScanCentral DAST <version>```
 + [Creating and Using a Settings File](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2320/SC_DAST_Help_23.2.0/index.htm#DynCLI/DynCLI_Settings.htm?TocPath=Configuring%2520the%2520ScanCentral%2520DAST%2520Environment%257CCreating%2520and%2520Using%2520a%2520Settings%2520File%257C_____0)
-+ Configure JSON Sample File (Exists inside ScanCentral DAST File with name “SampleSettingsFile.json”)
-  + Note: you will find out the SecureBase folder in this path “C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\scancentral-dast-config.tar\2a8033980bab20337b8d9c0a177ac45252de4c93b235813b10971d24d0675f41\layer.tar\Files\app\” with 7zip
-  + Copy the DefaultData.zip to “C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\”
++ Configure JSON Sample File (Exists inside ScanCentral DAST File with name ```SampleSettingsFile.json```)
+  + Note: you will find out the SecureBase folder in this path ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\scancentral-dast-config.tar\2a8033980bab20337b8d9c0a177ac45252de4c93b235813b10971d24d0675f41\layer.tar\Files\app\``` with 7zip
+  + Copy the ```DefaultData.zip``` to ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\```
 + Run Configuration CLI file
-  +	Create folder "C:\dast_config"
+  +	Create folder, for example```C:\dast_config```
   +	Open cmd and write these 2 commands
     ```
     cd C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI
@@ -109,8 +109,8 @@
     ```
     DAST.ConfigurationToolCLI.exe configureEnvironment --mode New --settingsFile "C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\SampleSettingsFile.json" --outputDirectory "C:\dast_config"
     ```
-  +	Then the artifacts will be saved in "C:\dast_config" folder
-+ Use the PowerShell script to pull and launch the core ScanCentral DAST 23.2.0 containers (DAST API, DAST Global Service, and DAST Utility Service)
+  +	Then the artifacts will be saved in ```C:\dast_config``` folder
++ Use the PowerShell script to pull and launch the core ScanCentral DAST containers (DAST API, DAST Global Service, and DAST Utility Service)
   ```
   pull-and-start-containers.ps1
   ```
@@ -128,14 +128,14 @@ pull-and-start-twofactorauth-container.ps1
   + Copy the Master Token then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
   + Write these in boxes input
     + my_2fa
-    + https://192.168.1.70:443/
+    + ```https://[IP]:443/```
     + Paste Master Token
 
 <br/>
 
 ### Install Webinspect
 + Right click on webinspect exe/msi to install, click Next, Next
-+ Connect to DB Server with create new db and choose SQL Auth
++ Connect to DB Server with create new db and choose ```SQL Auth```
 + Connect to LIM to activate webinspect or activate it directly
 + Configure and start the WebInspect REST API
   +	Add Webinspect PATH to Environment variable
@@ -149,15 +149,15 @@ pull-and-start-twofactorauth-container.ps1
     +	Log Level (Search for difference)
 + Test API or click start
 + Installing and Configuring the DAST Sensor Service
-+ Extract “ScanCentral DAST – Sensor Service” which exists at WebInspect folder in webinspect machine at this PATH “C:\ScannerService”
-  + Replace the appsettings.json file that the ScanCentral DAST Configuration Tool created by the existing file in “C:\ScannerService”
++ Extract ```ScanCentral DAST – Sensor Service``` which exists at WebInspect folder in webinspect machine at this PATH ```C:\ScannerService```
+  + Replace the ```appsettings.json``` file that the ScanCentral DAST Configuration Tool created by the existing file in ```C:\ScannerService```
   + Run this on cmd
     ```
     sc create ScannerWorkerService binpath= "C:\ScannerService \DAST.ScannerWorkerService.exe" start= auto depend= "WebInspect API" displayname= "WebInspect DAST Scanner Worker Service"
     ```
   + Restart
-  + Open Windows Services Manager (services.msc)
-  + Right click on the scanner worker service (ScannerWorkerService)
+  + Open Windows Services Manager ```services.msc```
+  + Right click on the scanner worker service ```ScannerWorkerService```
   + Configure the user account and password under which the service should run
   + Apply the changes
   + Start the service
@@ -165,22 +165,22 @@ pull-and-start-twofactorauth-container.ps1
 <br/>
 
 ### Install .NET & Java Agents [Installed On Web Server]
-+ Download & extract WebinspectAgent_xx.x.zip
++ Download & extract ```WebinspectAgent_xx.x.zip```
 
 
 #### Install dotnet agent
-+ Click on Fortify_WebInspect_Runtime_Agent_Dotnet_xx.x.windows_x64.exe
++ Click on ```Fortify_WebInspect_Runtime_Agent_Dotnet_xx.x.windows_x64.exe```
 + Verify dotnet agent installation
   + Open cmd
-  + cd <install_dir>\WebInspect_RuntimeAgt_Dotnet_xx.x\tools\
-  + IISControl.exe register restart
+  + ```cd <install_dir>\WebInspect_RuntimeAgt_Dotnet_xx.x\tools\```
+  + ```IISControl.exe register restart```
     + Run a scan with Webinspect to see if the agent if detected
 
 
 #### Install java agent
-+ Extract Fortify_Webinspect_Runtime_Agent_Java.zip at C:\Fortify_WebInspect_Runtime_Agent_Java_xx.x
++ Extract ```Fortify_Webinspect_Runtime_Agent_Java.zip``` at ```C:\Fortify_WebInspect_Runtime_Agent_Java_xx.x```
 + Add jar file to Apache configuration
-  + -javaagent: <install_dir>\lib\FortifyAgent.jar
+  + ```-javaagent: <install_dir>\lib\FortifyAgent.jar```
   + Restart Apache Tomcat
 
 
