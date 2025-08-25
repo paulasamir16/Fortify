@@ -28,13 +28,13 @@
   + ScanCentral DAST Utility Service
   + ScanCentral DAST database
   + OpenText DAST sensor
-+ OpenText™ Dynamic Application Security Testing (OpenText DAST) [Fortify WebInspect](https://www.microfocus.com/documentation/fortify-webinspect/)
++ OpenText™ Dynamic Application Security Testing (OpenText DAST) — [Fortify WebInspect](https://www.microfocus.com/documentation/fortify-webinspect/)
 + [Fortify WebInspect Enterprise](https://www.microfocus.com/documentation/fortify-webinspect-enterprise/)
 
 <br/>
 
 ### Static Application Security Testing (SAST)
-+ OpenText™ Static Application Security Testing (OpenText SAST) [Static Code Analyzer (SCA)](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)
++ OpenText™ Static Application Security Testing (OpenText SAST) — [Static Code Analyzer (SCA)](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)
 + [OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-software-security-center/)
   + Fortify ScanCentral SAST Controller
   + Fortify ScanCentral SAST sensors
@@ -55,13 +55,13 @@
 <br/>
 
 ### Software Composition Analysis (SCA)
-+ [Fortify Source Components Analysis scan (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
++ [Fortify Source Components Analysis scan — (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
 + [Debricked Integration into Fortify Software Security Center (SSC)](https://www.youtube.com/watch?v=tDGg7cRqg7Y)
 
 
 <br/>
 
-### Fortify Software Security Center (SSC) [SSC-Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/)
+### Fortify Software Security Center (SSC) — [SSC-Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/)
 + It's a browser-based application that provides a set of capabilities across the software development life cycle to automate detection of security vulnerabilities in applications. It helps your security and development teams work together to resolve security flaws quickly and accurately by making correlated data available from the following products:
   + OpenText™ Static Application Security Testing (OpenText SAST)
   + OpenText™ Fortify ScanCentral SAST
