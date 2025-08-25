@@ -8,16 +8,16 @@
 <br/>
 
 ### Install ScanCentral SAST Controller
-+ Log on to Windows as a local user with administrative permissions.
-+ Download & extract the contents of the Fortify_ScanCentral_Controller_<version>_x64.zip in C:\Programs Files\Fortify
-+ Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured.
-+ Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the <controller_install_dir>\tomcat directory.
-+ Navigate to the <controller_install_dir>\tomcat\bin directory, and then run the following:
-  + service.bat install ScanCentralController
++ Log on to Windows as a local user with administrative permissions
++ Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Programs Files\Fortify```
++ Make sure that the ```JRE_HOME``` and ```JAVA_HOME``` environment variables are correctly configured
++ Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the ```<controller_install_dir>\tomcat``` directory
++ Navigate to the ```<controller_install_dir>\tomcat\bin``` directory, and then run the following
+  + ```service.bat install ScanCentralController```
 + Configuring Java Memory for the Service
-  + Run tomcat9w.exe
-  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value.
-  + Restart the service.
+  + Run ```tomcat9w.exe```
+  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value
+  + Restart the service
 + Create secure connection with Apache Tomcat
   ```
   keytool -genkey -alias “mykey” -keyalg RSA -keystore C:\mykeystore
@@ -25,31 +25,31 @@
   ```	
   keytool -export -alias “mykey” -keystore C:\mykeystore -file "mycert.cer"
   ```
-+ Add the following connector to the server.xml file in the tomcat/conf directory:
++ Add the following connector to the server.xml file in the tomcat/conf directory
   ```
   <Connector port="8443" maxThreads="200"
   scheme="https" secure="true" SSLEnabled="true"
   keystoreFile="<mykeystore>" keystorePass="<mypassword>"
   clientAuth="false" sslProtocol="TLS"/>
   ```
-+ Open config.properties inside <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes and edit url to “this_url=https://<controller_host>:8443/scancentral-ctrl”
-+ Restart your Tomcat server.
-+ Open config.properties inside <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes and edit it. [U know what needs to edit]
++ Open config.properties inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit URL to this URL ```https://<controller_host>:8443/scancentral-ctrl```
++ Restart your Tomcat server
++ Open ```config.properties``` inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit it. [U know what needs to edit]
 + Review these
-  +	About the pool_mapping_mode Property [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
-  +	Encrypting the Shared Secret on the Controller [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
-  +	Avoiding Read Timeout Errors [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/avoid-timeout.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____3)
+  +	About the pool_mapping_mode Property — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
+  +	Encrypting the Shared Secret on the Controller — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
+  +	Avoiding Read Timeout Errors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/avoid-timeout.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____3)
 + Start the controller
   + Open cmd
-    + cd <controller_install_dir>/tomcat/bin
-      + startup.bat
-+ Review Fortify ScanCentral SAST API [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
+    + ```cd <controller_install_dir>/tomcat/bin```
+      + ```startup.bat```
++ Review Fortify ScanCentral SAST API — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
 
 <br/>
 
 ### Install SCA as a ScanCentral SAST Sensors
-+ Download and extract Fortify_SCA_<version>_windows_x64
-+ Click on Fortify_SCA_<version>_windows_x64.exe
++ Download and extract ```Fortify_SCA_<version>_windows_x64```
++ Click on ```Fortify_SCA_<version>_windows_x64.exe```
 + Open cmd
   ```
   cd <sca_install_dir>\bin\
@@ -74,25 +74,25 @@
   ```
 + Start the sensor
   + Set service to Automatic and Logon as Local System then enable Allow service to
-  + Start FortifyScanCentralWorkerService service
-+ Review Configuring Sensors [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
-+ Add certificate to SCA Adding Trusted Certificates [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
+  + Start ```FortifyScanCentralWorkerService``` service
++ Review Configuring Sensors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
++ Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
 
 <br/>
 
 ### Install ScanCentral SAST Clients [Installed with SCA]
-+ Enter <sca_install_dir>/Core/config and open client.properties
-+ Set the same value for the client_auth_token that you set for the client_auth_token on the Controller [in the <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties file]
++ Enter ```<sca_install_dir>/Core/config``` and open ```client.properties```
++ Set the same value for the ```client_auth_token``` that you set for the ```client_auth_token``` on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
 
 <br/>
 
 ### Install ScanCentral SAST Clients [Installed without SCA]
-+ Download & extract the contents of the Fortify_ScanCentral_Client_<version>_x64.zip
-+ Add the <client_install_dir>/bin to your PATH environment variable.
-+ Add the JAVA_HOME environment variable
-  + Important! If you have a Java 8 project that fails to build because Fortify ScanCentral SAST requires Java 11 or later to run, set the SCANCENTRAL_JAVA_HOME environment variable to point a supported version of Java.
-+ Open <client_install_dir>/Core/config/client.properties in a text editor.
-+ Set the same value for the client_auth_token property that you set for the client_auth_token property on the Controller (in the <controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties file).
++ Download & extract the contents of the ```Fortify_ScanCentral_Client_<version>_x64.zip```
++ Add the ```<client_install_dir>/bin``` to your PATH environment variable
++ Add the ```JAVA_HOME``` environment variable
+  + Important! If you have a Java 8 project that fails to build because Fortify ScanCentral SAST requires Java 11 or later to run, set the ```SCANCENTRAL_JAVA_HOME``` environment variable to point a supported version of Java.
++ Open ```<client_install_dir>/Core/config/client.properties``` in a text editor
++ Set the same value for the ```client_auth_token``` property that you set for the ```client_auth_token``` property on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
 + Save the file
 
 <br/>
@@ -104,7 +104,7 @@
 + Choose the policy and Enable AA auto-apply, and auto-predict
 
 #### Configuring Audit Assistant Custom Tags
-+ This is a message that clarifies the status of the issue and it is something between these 3 things:
++ This is a message that clarifies the status of the issue and it is something between these 3 things
   + Not an issue
   + Not predicted
   + Exploitable
@@ -116,7 +116,7 @@
 ### Install Plugins
 #### Plugins for Eclipse [Fortify SCA, Fortify Security Assistant, Fortify Remediation Plugin]
 ##### Fortify SCA
-+	Help > Install New Software
++	Help -> Install New Software
 +	Click Add and choose Local then locate the Eclipse plugin folder
 +	Select All
 +	Next -> Finish
@@ -124,23 +124,23 @@
 
 
 ##### Fortify Security Assistant
-+	Help > Install New Software
++	Help -> Install New Software
 +	Click Add and choose Archive then locate the Security Assistant plugin zip file
 +	Select All
 +	Next -> Finish
 +	Accept restart eclipse after finish the installation
 
 
-##### Fortify Remediation Plugin
-+	Help > Install New Software.
-+	Click Add.
-+	In the Location box, type https://tools.fortify.com/ssceclipseplugin
-+	Click Add.
-+	Click Select All and then click Next.
-+	Click Finish.
+##### Fortify Remediation Plugin [Also, you can install int from Eclipse Marketplace]
++	Help -> Install New Software
++	Click Add
++	In the Location box, type ```https://tools.fortify.com/ssceclipseplugin```
++	Click Add
++	Click Select All and then click Next
++	Click Finish
 +	Click Restart
 
-> Verify License in eclipse
+> Verify License in Eclipse
 > + Fortify -> Manage License
 
 <br/>
@@ -158,21 +158,21 @@
 #### Plugin for IDEA or Android Studio
 +	Start IntelliJ IDEA or Android Studio
 +	Choose Plugin -> Settings
-+	Select Install Plugin from Disk, browse to the <tools_install_dir>/plugins/IntelliJAnalysis directory, and then select Fortify_IntelliJ_Analysis_Plugin_<version>.zip.
++	Select Install Plugin from Disk, browse to the ```<tools_install_dir>/plugins/IntelliJAnalysis``` directory, and then select ```Fortify_IntelliJ_Analysis_Plugin_<version>.zip```
 +	Click OK the restart
 
 <br/>
 
 #### Bug Trackers in SSC
-> System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server.
+> System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server
 > + SSC -> Administrator -> Plugins -> Bug Tracking Plugins
-> + NEW -> Choose Plugin from <ssc_install_dir>/<ssc_install_WAR_Tomcat>/Plugins/<BugTrackerPlugin_Name>
+> + NEW -> Choose Plugin from ```<ssc_install_dir>/<ssc_install_WAR_Tomcat>/Plugins/<BugTrackerPlugin_Name>```
 
 <br/>
 
 #### Fortify Plugin for Jenkins
 +	Install Fortify from Manage Jenkins > Manage Plugins -> Available tab -> In the Filter box, type Fortify
-+	Create 2 token [CIToken, ScanCentralCtrlToken] from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them.
++	Create 2 token [CIToken, ScanCentralCtrlToken] from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them
 +	Install Missing Maven Plugins
 
 <br/>
