@@ -46,15 +46,17 @@
   + IDE Plugins
     + SCA Plugin [Eclipse, IntelliJ, and Visual Studio, VS Code]
     + Fortify Security Assistant Extension [Eclipse, IntelliJ, and Visual Studio, Android Studio]
+    + Remidation???????????????
   + Fortify Scan Wizard
-  + Fortify Custom Rules Editor
+  + Fortify Custom Rules Editor???????????????
   + FPRUtility
   + fortifyclient
 
 <br/>
 
 ### Software Composition Analysis (SCA)
-
++ [Fortify Source Components Analysis scan (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
++ [Debricked Integration into Fortify Software Security Center (SSC)](https://www.youtube.com/watch?v=tDGg7cRqg7Y)
 
 
 <br/>
@@ -78,6 +80,10 @@
 + An AI code security tool that executes fast auditing, identification, and automated code fix suggestions for SAST vulnerabilities with the power of AI.
 + It embeds into your dev environment, using AI code analysis to continuously monitor code for security issues, and provides contextual explanations and tailored code fix suggestions.
 
+#### Sonatype
+
+
+<br/>
 
 ## Installation Best Practice
 
