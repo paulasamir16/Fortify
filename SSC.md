@@ -5,8 +5,8 @@
 > [!NOTE]
 > There are 3 methods to deploy Fortify Software Security Center (SSC)
 > 1. Manual (Here, we talk about this method)
-> 2. Automated
-> 3. In Kubernetes
+> 2. [Automated](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#adv-config/auto-config.htm)
+> 3. [In Kubernetes](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/deploy-kubernetes.htm?TocPath=Deploying%2520Fortify%2520Software%2520Security%2520Center%257C_____5)
 
 <br/>
 
@@ -15,22 +15,24 @@
 > [!NOTE]
 > There are hardware requirements for each version of SSC, so you can check it from here — [Hardware-requirements](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-reqs.htm?TocPath=System%2520requirements%257C_____0)
 
++ Must give static IP to database machine because we connect from SSC machine to database machine with jdbc
+  +  Or you can use hostname instead of IP
 + [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) & Install SQL Server
   + After finish installation click on Customize and choose Create new instance then write a name such as ```SSCdb```
     + Choose Windows and SQL Authentication Mixed mode and add the machine user
 + Open SSMS with Windows Authentication
-+ Create new user
++ Create new user with this permission — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/db-account-perms.htm) [I don't understand why I can use a user with low permission with the SSC as you can only configure one user]
   + Security -> Logins -> Right-click -> New Login -> SQL Authentication
 + Login with this new user
 + Create new database
   + Make Collation = ```SQL_Latin1_General_CP1_CS_AS```
 + Enable
-  + (AUTO_UPDATE_STATISTICS_ASYNC)
-  + (ANSI_NULL_DFLT_ON)
-  + (ALLOW_SNAPSHOT_ISOLATION)
-  + (READ_COMMITTED_SNAPSHOT)
+  + ```(AUTO_UPDATE_STATISTICS_ASYNC)```
+  + ```(ANSI_NULL_DFLT_ON)```
+  + ```(ALLOW_SNAPSHOT_ISOLATION)```
+  + ```(READ_COMMITTED_SNAPSHOT)```
 + Open this path ```Fortify_SSC_<version>\Fortify_<version>_Server_WAR_Tomcat.zip\sql\sqlserver\``` and execute the ```create-tables``` file
-+ Enable TCP/IP from SQL Server Configuration with port 1433
++ Enable TCP/IP from ```SQL Server Configuration``` with port 1433
 + Disable Firewall or open port 1433
 
 <br/>
@@ -40,8 +42,8 @@
 > There are hardware requirements for each version of SSC, so you can check it from here — [Hardware-requirements](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-reqs.htm?TocPath=System%2520requirements%257C_____0)
 
 + Download SSC file ```Fortify_SSC_Server_23.2.0``` and ```fortify.license``` from [Opentext Portal](https://sld.microfocus.com/) then extract it
-+ Install java
-+ Install Tomcat and you must create username, and password for it
++ Install java with required version
++ Install Tomcat and you must enable ```Host Manager``` then create username & password for it
 + Copy ```Fortify_SSC_<version>/Fortify_<version>_Server_WAR_Tomcat.zip/ssc.war``` file to ```C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps```
 + Create new folder, for example ``C:\Fortify``
 + Open Apache configuration -> Java -> Java Option ```-Dfortify.home=C:\Fortify``` -> Initial memory pool ```2048``` -> Maximum memory pool ```4096``` -> Apply > Save
@@ -53,7 +55,7 @@
   keytool -genkey -alias mykey -keyalg RSA -keystore C:\mykeystore
   ```
   ```
-  keytool -export -alias mykey -keystore C:\mykeystore -file "mycert.cer"
+  keytool -export -alias mykey -keystore C:\mykeystore -file "sscert.cer"
   ```
   + Edit tomcat/conf/server.xml
     ```
@@ -63,7 +65,7 @@
     clientAuth="false" sslProtocol="TLS"/>
     ```
     ```
-    cd C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin
+    cd "C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin"
     ```
     ```
     startup
@@ -97,6 +99,8 @@
   + ```Fortify_Report_Seed_Bundle-2023_Q1_<build>.zip``` file (Required)
   + ```Fortify_PCI_SSF_Basic_Seed_Bundle-2023_Q1_<build>.zip``` file (Optional)
   + ```Fortify_PCI_Basic_Seed_Bundle-2023_Q1_<build>.zip``` file (Optional)
+> [!NOTE]
+> The seed bundle files are included in the Fortify Software Security Center installation package. After your initial deployment, you can download off-cycle seed bundles from the [Application Security Customer Portal](https://support.fortify.com/secure/index.jsp) under the PREMIUM CONTENT > FORTIFY EXCHANGE
 + Restart Apache and the browser [Or restart the machine]
 + Login with admin & admin the he will ask you to change the password
   + Note: SSC get Credentials from the database
@@ -106,12 +110,61 @@
 ### Configuration
 + Create new administrator account, and then delete the default administrator
 + Update Rulepacks from server from Administration -> Metrics & Tracking -> Rulepacks then click UPDATE FROM SERVER -> Okay
-+ After finish the installation, you can create a banner for your organization on (Logon, Dashboard, Applications, Reports, and so on) — [Link](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SSC_Help_23.2.0/index.htm#SSC_UG/Custom_Banner.htm?TocPath=Part%2520I%253A%2520Deploying%2520Fortify%2520Software%2520Security%2520Center%257CAdditional%2520Fortify%2520Software%2520Security%2520Center%2520Configuration%257C_____6)
-+ Changing the Support Contact Link in the About Fortify SSC Box with support portal for your organization — [Link](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SSC_Help_23.2.0/index.htm#SSC_UG/Customize_Support.htm?TocPath=Part%2520I%253A%2520Deploying%2520Fortify%2520Software%2520Security%2520Center%257CAdditional%2520Fortify%2520Software%2520Security%2520Center%2520Configuration%257C_____9)
-+ Edit password required from ```password.strength.min.score``` property [Located in ```<fortify.home>/<app_context>/conf/app.properties```]
-+ Enable Export to CSV from Administrator -> Configuration -> Core to export Fortify SSC data displayed in the Dashboard and AUDIT views
++ **Creating a system-wide banner**
+> [!NOTE]
+> As an Administrator, you can create a system-wide banner that is displayed centered below the header on all pages in the application
+  + To create a system-wide banner
+    + Sign in to Fortify Software Security Center as an Administrator
+    + On the header, select Administration
+    + On the navigation pane, expand Configuration, and then select Customization
+    + Under Customized Banner, select the Display a custom banner system-wide check boxIn the Enter the text to display in the banner box, type the text for your banner
+    + Click SAVE
++ You can create a banner for your organization on (Logon, Dashboard, Applications, Reports, and so on) — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/custom-banner.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____10)
+  + ??
+  + ??
++ **Changing the Support Contact Link in the About Fortify SSC Box with support portal for your organization**
+  + Sign in to Fortify Software Security Center as an Administrator
+  + On the header, select Administration
+  + On the navigation pane, expand Configuration, and then select Customization
+  + Select the Enable using the support URL for your organization in the About box check box
+  + In the Support URL for your organization box, enter the web address for your organization's support portal
+  + In the Text displayed for your support URL box, type the text to display for the link to your organization's support portal
+  + Click SAVE
++ **Setting the required password strength for Fortify Software Security Center sign in**
+  + You can use the ```password.strength.min.score``` property [Located in ```<fortify.home>/<app_context>/conf/app.properties```]
+    + 0 - Poor
+    + 1	- Weak
+    + 2	- Medium
+    + 3	- Strong
+    + 4	- Very strong
++ **Configuring email alert notification settings**
+  + ??
+  + ??
++ **Blocking data export to CSV files**
+  + To prevent users from exporting Fortify Software Security Center data to CSV files
+    + Sign in to Fortify Software Security Center as an Administrator
+    + On the header, select Administration
+    + On the navigation pane, expand Configuration, and then select Core
+    + Clear the Enable Export to CSV from the Dashboard and AUDIT views check box
+    + Click SAVE
++ **If you purchased Fortify Insight, you can add a Fortify Insight link to your Dashboard**
+  + To add the Fortify Insight link to your Dashboard view
+    + Sign in as an Administrator
+    + On the header, select Administration
+    + On the navigation pane, expand Configuration, and then select Customization
+    + Under Fortify Insight URL, select the Enable display of the Fortify Insight URL on your Dashboard check box
+    + In the Fortify Insight URL box, enter the URL for your Fortify Insight page
+    + Click SAVE
+
+**
 + Enable Priority Override from SSC -> ADMINISTRATION -> Configuration -> Issue Audit to can edit severity of vulns
+**
 
-
-
++ [Configuring Issue Stats thresholds](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Issue_Age.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____2)
++ [Configuring application security training](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config_training.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____3)
++ [Configuring core settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config-core.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520core%2520settings%257C_____0)
++ Supported service integrations
+  + [Reference-One](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-service-integrations.htm?TocPath=System%2520requirements%257C_____9)
+  + [Reference-Two](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/deploy-overview.htm?TocPath=Deploying%2520Fortify%2520Software%2520Security%2520Center%257C_____1)
+  + [Reference-Three](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/components.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____1)
 
