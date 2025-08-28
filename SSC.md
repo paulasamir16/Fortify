@@ -114,7 +114,7 @@
 > [!NOTE]
 > As an Administrator, you can create a system-wide banner that is displayed centered below the header on all pages in the application
   + To create a system-wide banner
-    + Sign in to Fortify Software Security Center as an Administrator
+    + Sign in to SSC as an Administrator
     + On the header, select Administration
     + On the navigation pane, expand Configuration, and then select Customization
     + Under Customized Banner, select the Display a custom banner system-wide check boxIn the Enter the text to display in the banner box, type the text for your banner
@@ -123,7 +123,7 @@
   + ??
   + ??
 + **Changing the Support Contact Link in the About Fortify SSC Box with support portal for your organization**
-  + Sign in to Fortify Software Security Center as an Administrator
+  + Sign in to SSC as an Administrator
   + On the header, select Administration
   + On the navigation pane, expand Configuration, and then select Customization
   + Select the Enable using the support URL for your organization in the About box check box
@@ -142,14 +142,14 @@
   + ??
 + **Blocking data export to CSV files**
   + To prevent users from exporting Fortify Software Security Center data to CSV files
-    + Sign in to Fortify Software Security Center as an Administrator
+    + Sign in to SSC as an Administrator
     + On the header, select Administration
     + On the navigation pane, expand Configuration, and then select Core
     + Clear the Enable Export to CSV from the Dashboard and AUDIT views check box
     + Click SAVE
 + **If you purchased Fortify Insight, you can add a Fortify Insight link to your Dashboard**
   + To add the Fortify Insight link to your Dashboard view
-    + Sign in as an Administrator
+    + Sign in to SSC as an Administrator
     + On the header, select Administration
     + On the navigation pane, expand Configuration, and then select Customization
     + Under Fortify Insight URL, select the Enable display of the Fortify Insight URL on your Dashboard check box
@@ -163,8 +163,23 @@
 + [Configuring Issue Stats thresholds](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Issue_Age.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____2)
 + [Configuring application security training](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config_training.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____3)
 + [Configuring core settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config-core.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520core%2520settings%257C_____0)
++ [Configuring Java Message Service settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_JMS_settings.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____14)
+  + ??
++ [Configuring a proxy for integrations](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_proxy.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____18)
++ Enabling the running and management of OpenText ScanCentral DAST scans [Enable integration with OpenText ScanCentral DAST with SSC]
+  + Enable OpenText ScanCentral DAST integration in Fortify Software Security Center by doing the following
+    + Sign in to SSC as an Administrator
+    + On the header, select Administration -> Configuration, and then select ScanCentral DAST
+    + On the ScanCentral DAST page, select the Enable ScanCentral DAST check box
+    + In the ScanCentral DAST server URL box, type your OpenText ScanCentral DAST server URL
+    + The OpenText ScanCentral DAST server URL should resemble one of the following
+      + ```http://<DAST_API_Host>:<port>/api/```
+      + ```http://<DAST_API_IP>:<port>/api/```
+        + You can use the https protocol instead
+      + Click SAVE
 + Supported service integrations
   + [Reference-One](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-service-integrations.htm?TocPath=System%2520requirements%257C_____9)
   + [Reference-Two](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/deploy-overview.htm?TocPath=Deploying%2520Fortify%2520Software%2520Security%2520Center%257C_____1)
   + [Reference-Three](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/components.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____1)
-
++ [Setting the strategy for resolving issue audit conflicts](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Aud_Conflict_Strat.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____13)
++ ??
