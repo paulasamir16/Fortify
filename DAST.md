@@ -97,39 +97,45 @@
 ### Install ScanCentral DAST Components
 + Download DAST file from SLD ```ScanCentral DAST <version>```
 + [Creating and Using a Settings File](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/2320/SC_DAST_Help_23.2.0/index.htm#DynCLI/DynCLI_Settings.htm?TocPath=Configuring%2520the%2520ScanCentral%2520DAST%2520Environment%257CCreating%2520and%2520Using%2520a%2520Settings%2520File%257C_____0)
-+ Configure JSON Sample File (Exists inside ScanCentral DAST File with name ```SampleSettingsFile.json```)
-  + Note: you will find out the SecureBase folder in this path ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\scancentral-dast-config.tar\2a8033980bab20337b8d9c0a177ac45252de4c93b235813b10971d24d0675f41\layer.tar\Files\app\``` with 7zip
+  + Put the file inside ScanCentral DAST folder ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\``` with name ```SampleSettingsFile.json```)
+  + [Example](https://drive.google.com/file/d/10XPsS2DwpnNE6_Lbni9m0aYf1YfacGqN/view?usp=drivesdk)
+  + Note: you will find out the SecureBase folder in this path ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\scancentral-dast-config.tar\2a8033980bab20337b8d9c0a177ac45252de4c93b235813b10971d24d0675f41\layer.tar\Files\app\``` you can extract it with 7zip
   + Copy the ```DefaultData.zip``` to ```C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\```
 + Run Configuration CLI file
   +	Create folder, for example```C:\dast_config```
-  +	Open cmd and write these 2 commands
+  +	Open PowerShell and write these two commands
     ```
-    cd C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI
+    cd "C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\"
     ```
     ```
-    DAST.ConfigurationToolCLI.exe configureEnvironment --mode New --settingsFile "C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\SampleSettingsFile.json" --outputDirectory "C:\dast_config"
+    .\DAST.ConfigurationToolCLI.exe configureEnvironment --mode new --settingsFile "C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\SampleSettingsFile.json" --outputDirectory "C:\dast_config"
     ```
-  +	Then the artifacts will be saved in ```C:\dast_config``` folder
+  +	Then the artifacts will be saved inside ```C:\dast_config``` folder
++	Extract this folder ```dast-windows-start```
 + Use the PowerShell script to pull and launch the core ScanCentral DAST containers (DAST API, DAST Global Service, and DAST Utility Service)
+  ```
+  cd "C:\dast_config\dast-windows-start"
+  ```
   ```
   pull-and-start-containers.ps1
   ```
+  ```
+  pull-and-start-sensor-container.ps1
+  ```
+  ```
+  pull-and-start-twofactorauth-container.ps1
+  ```
+
++ **Paul I need to be sure if they are pulled and running**
 + Log in to Fortify SSC and enable ScanCentral DAST in the ADMINISTRATION view
   + ```http://<DAST_API_Hostname>:<Port>/api/```
   + ```http://<DAST_API_IP_Address>:<Port>/api/```
 
-
-```
-pull-and-start-sensor-container.ps1
-```
-```
-pull-and-start-twofactorauth-container.ps1
-```
-  + Copy the Master Token then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
-  + Write these in boxes input
-    + my_2fa
-    + ```https://[IP]:443/```
-    + Paste Master Token
++ Copy the Master Token then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
++ Write these in boxes input
+  + my_2fa
+  + ```https://[IP]:443/```
+  + Paste Master Token
 
 <br/>
 
