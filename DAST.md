@@ -110,6 +110,7 @@
     ```
     .\DAST.ConfigurationToolCLI.exe configureEnvironment --mode new --settingsFile "C:\Users\Administrator\Downloads\ScanCentral_DAST_23.2\ScanCentral_DAST_23.2\ScanCentral DAST - CLI Config Tool\ConfigurationToolCLI\SampleSettingsFile.json" --outputDirectory "C:\dast_config"
     ```
+    + Note: The second one takes a lot of time about 2:30 hours.
   +	Then the artifacts will be saved inside ```C:\dast_config``` folder
 +	Extract this folder ```dast-windows-start```
 + Use the PowerShell script to pull and launch the core ScanCentral DAST containers (DAST API, DAST Global Service, and DAST Utility Service)
