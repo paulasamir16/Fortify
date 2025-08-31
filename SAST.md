@@ -8,21 +8,22 @@
 <br/>
 
 ### Install ScanCentral SAST Controller
-+ Log on to Windows as a local user with administrative permissions
 + Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Programs Files\Fortify```
-+ Make sure that the ```JRE_HOME``` and ```JAVA_HOME``` environment variables are correctly configured
++ Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured. [In System Variables]
+  + Enter JAVA_HOME as variable name and C:\Program Files\Java\jdk1.8.0_121 as Value
+  + Enter JRE_HOME as variable name and C:\Program Files\Java\jre1.8.0_121 as Value
 + Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the ```<controller_install_dir>\tomcat``` directory
 + Navigate to the ```<controller_install_dir>\tomcat\bin``` directory, and then run the following
   + ```service.bat install ScanCentralController```
 + Configuring Java Memory for the Service
-  + Run ```tomcat9w.exe```
-  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value
+  + Run ```tomcat9w.exe``` from ```<controller_install_dir>\tomcat\bin``` directory
+  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value ----> 4096
   + Restart the service
 + Create secure connection with Apache Tomcat
   ```
   keytool -genkey -alias “mykey” -keyalg RSA -keystore C:\mykeystore
   ```
-  ```	
+  ```
   keytool -export -alias “mykey” -keystore C:\mykeystore -file "mycert.cer"
   ```
 + Add the following connector to the server.xml file in the tomcat/conf directory
@@ -32,9 +33,18 @@
   keystoreFile="<mykeystore>" keystorePass="<mypassword>"
   clientAuth="false" sslProtocol="TLS"/>
   ```
-+ Open config.properties inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit URL to this URL ```https://<controller_host>:8443/scancentral-ctrl```
-+ Restart your Tomcat server
-+ Open ```config.properties``` inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit it. [U know what needs to edit]
++ Open config.properties inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit
+  + worker_auth_token
+  + client_auth_token
+  + max_upload_size
+  + ssc_url to ```http://192.168.1.67:8080/ssc```
+  + ssc_scancentral_ctrl_secret
+    + Don’t use #, use simple secret such as Paul123
+  + this_url to ```https://<controller_host>:8443/scancentral-ctrl```
+  + lim_server_url to ```http://192.168.1.70/LIM.Admin```
+  + lim_license_pool
+  + lim_license_pool_password
++ Restart Tomcat ScanCentral service
 + Review these
   +	About the pool_mapping_mode Property — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
   +	Encrypting the Shared Secret on the Controller — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
@@ -44,6 +54,13 @@
     + ```cd <controller_install_dir>/tomcat/bin```
       + ```startup.bat```
 + Review Fortify ScanCentral SAST API — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
++ Connect ScanCentral Controller with SSC
+  + Open Administration -> Configuration -> ScanCentral SAST
+    + ScanCentral Controller URL
+    + SSC and ScanCentral Controller shared secret
++ Verify the connection between ScanCentral Controller and SSC
+  + Open ScanCentral -> SAST -> Controller
+    + You must find information about ScanCentral Controller and if you find this message “there is no scancentral controller information to display” then the connection failed and you should investigate the issue.
 
 <br/>
 
@@ -60,21 +77,31 @@
   ```
   scapostinstall
   ```
-    +	Edit SSC Settings
-+ Edit worker.properties
-+ Open cmd
+    +	Then edit SSC Settings
++ Edit <sca_install_dir>\Core\config\worker.properties
+  + worker_auth_token
++ Open cmd to setup the sensor service
   ```
   cd <sca_install_dir>\bin\scancentral-worker-service
   ```
+  + If you want to use a plaintext password
   ```
   setupworkerservice.bat <sca_version> <controller_url> <shared_secret>
+
+  Example:
+  ???
   ```
+  + If you want to use an encrypted password
   ```
   setupworkerservice.bat <sca_version> <controller_url> "<encrypted_shared_secret>" <path_to_pwtool.keys_file>
+
+  Example:
+  ???
   ```
 + Start the sensor
-  + Set service to Automatic and Logon as Local System then enable Allow service to
-  + Start ```FortifyScanCentralWorkerService``` service
+  + Set service to Automatic and LogOn as Local System then enable Allow service to interact with desktop.
+  + Start FortifyScanCentralWorkerService service
+    + ```net start <service display-name>``` Or ```sc start <service-name>```
 + Review Configuring Sensors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
 + Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
 
