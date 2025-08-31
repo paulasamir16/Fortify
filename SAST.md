@@ -10,14 +10,14 @@
 ### Install ScanCentral SAST Controller
 + Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Programs Files\Fortify```
 + Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured. [In System Variables]
-  + Enter JAVA_HOME as variable name and C:\Program Files\Java\jdk1.8.0_121 as Value
-  + Enter JRE_HOME as variable name and C:\Program Files\Java\jre1.8.0_121 as Value
+  + Enter ```JAVA_HOME``` as variable name and ```C:\Program Files\Java\jdk-11``` as Value
+  + Enter ```JRE_HOME``` as variable name and ```C:\Program Files\Java\jre-11``` as Value
 + Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the ```<controller_install_dir>\tomcat``` directory
-+ Navigate to the ```<controller_install_dir>\tomcat\bin``` directory, and then run the following
++ Navigate to the ```<controller_install_dir>\tomcat\bin``` directory, then run the following
   + ```service.bat install ScanCentralController```
 + Configuring Java Memory for the Service
   + Run ```tomcat9w.exe``` from ```<controller_install_dir>\tomcat\bin``` directory
-  + In the Apache Tomcat Properties window, click the Java tab, and then set the Maximum memory pool value ----> 4096
+  + In the Apache Tomcat Properties window, click the ```Java``` tab, and then set the ```Maximum memory pool``` value ----> 4096
   + Restart the service
 + Create secure connection with Apache Tomcat
   ```
@@ -26,20 +26,20 @@
   ```
   keytool -export -alias “mykey” -keystore C:\mykeystore -file "mycert.cer"
   ```
-+ Add the following connector to the server.xml file in the tomcat/conf directory
++ Add the following connector to the ```server.xml``` file in the ```tomcat/conf``` directory
   ```
   <Connector port="8443" maxThreads="200"
   scheme="https" secure="true" SSLEnabled="true"
   keystoreFile="<mykeystore>" keystorePass="<mypassword>"
   clientAuth="false" sslProtocol="TLS"/>
   ```
-+ Open config.properties inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit
++ Open ```config.properties``` inside ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes``` and edit
   + worker_auth_token
   + client_auth_token
   + max_upload_size
   + ssc_url to ```http://192.168.1.67:8080/ssc```
   + ssc_scancentral_ctrl_secret
-    + Don’t use #, use simple secret such as Paul123
+    + Don’t use #, use a simple secret such as Paul123
   + this_url to ```https://<controller_host>:8443/scancentral-ctrl```
   + lim_server_url to ```http://192.168.1.70/LIM.Admin```
   + lim_license_pool
@@ -107,13 +107,19 @@
 
 <br/>
 
-### Install ScanCentral SAST Clients [Installed with SCA]
+### Install ScanCentral SAST Clients
+> [!NOTE]
+> There are two methods to install SAST Clinets
+> + Installed beside SCA
+> + Installed without SCA
+
+#### Installed beside SCA
 + Enter ```<sca_install_dir>/Core/config``` and open ```client.properties```
 + Set the same value for the ```client_auth_token``` that you set for the ```client_auth_token``` on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
 
 <br/>
 
-### Install ScanCentral SAST Clients [Installed without SCA]
+#### Installed without SCA
 + Download & extract the contents of the ```Fortify_ScanCentral_Client_<version>_x64.zip```
 + Add the ```<client_install_dir>/bin``` to your PATH environment variable
 + Add the ```JAVA_HOME``` environment variable
