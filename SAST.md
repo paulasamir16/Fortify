@@ -173,8 +173,9 @@
 +	Click Finish
 +	Click Restart
 
-> Verify License in Eclipse
-> + Fortify -> Manage License
+> [!NOTE]
+> To verify License in Eclipse
+> + Go to Fortify -> Manage License
 
 <br/>
 
@@ -196,13 +197,14 @@
 
 <br/>
 
-#### Bug Trackers in SSC
-> System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server
-> + SSC -> Administrator -> Plugins -> Bug Tracking Plugins
-> + NEW -> Choose Plugin from ```<ssc_install_dir>/<ssc_install_WAR_Tomcat>/Plugins/<BugTrackerPlugin_Name>```
+### Bug Trackers in SSC
++ System can integrate with Jira, Bugzilla, ALM, and Azure DevOps Server
+  + SSC -> Administrator -> Plugins -> Bug Tracking Plugins
+  + NEW -> Choose Plugin from ```<ssc_install_dir>/<ssc_install_WAR_Tomcat>/Plugins/<BugTrackerPlugin_Name>```
 
 <br/>
 
+### Fortify Plugin for CI/CD Tools (Jenkins, GitHub, GitLab, Azure DevOps, Bamboo)
 #### Fortify Plugin for Jenkins
 +	Install Fortify from Manage Jenkins > Manage Plugins -> Available tab -> In the Filter box, type Fortify
 +	Create 2 token [CIToken, ScanCentralCtrlToken] from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them
@@ -210,7 +212,7 @@
 
 <br/>
 
-#### Github
+#### GitHub
 + Create a personal access token with enable these points
 + GitHub -> Your login -> Settings -> Developer settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
   + Repo                 -------------->    Full control of private repositories
@@ -246,7 +248,10 @@
   + Manage Jenkins -> Configure System -> In GitLab section -> +Add -> Jenkins -> GitLab API token [Put ur personal token] -> Add -> Test Connection -> Save
 
 
+#### Azure DevOps
 
+
+#### Bamboo
 
 
 
