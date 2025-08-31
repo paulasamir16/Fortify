@@ -1,7 +1,7 @@
 
 ## Here we will install
 + ScanCentral SAST Controller
-+ SAST SCA (Sensor) & Client
++ SAST SCA Sensor & Client
 + Plugins
 + Audit Assistant (AA)
 
