@@ -1,8 +1,9 @@
 
-## Here we will install
+## Here we will install SAST Components
 + ScanCentral SAST Controller
-+ SAST SCA Sensor & Client
-+ Plugins
++ SAST Static Code Analyzer (SCA) Sensor & Client
++ Fortify Plugins for IDEs
++ Fortify Plugins for CI/CD Tools
 + Audit Assistant (AA)
 
 <br/>
@@ -44,23 +45,68 @@
   + lim_server_url to ```http://192.168.1.70/LIM.Admin```
   + lim_license_pool
   + lim_license_pool_password
+  + client_auto_update=true
+    + Use this if you need to get version updates for clients and sensors from Controller — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/sc-sast-ugd-html-25.2.0/index.htm#upgrades/auto-updates.htm)
+  + pool_mapping_mode — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
 + Restart Tomcat ScanCentral service
+
 + Review these
-  +	About the pool_mapping_mode Property — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
   +	Encrypting the Shared Secret on the Controller — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
-  +	Avoiding Read Timeout Errors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/avoid-timeout.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____3)
+
 + Start the controller
   + Open cmd
     + ```cd <controller_install_dir>/tomcat/bin```
       + ```startup.bat```
+> [!NOTE]
+> If you want to stop the Controller run ```shutdown.bat```
+
 + Review Fortify ScanCentral SAST API — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
-+ Connect ScanCentral Controller with SSC
+
+
+#### Configuration
++ **Connect ScanCentral Controller with SSC**
   + Open Administration -> Configuration -> ScanCentral SAST
     + ScanCentral Controller URL
     + SSC and ScanCentral Controller shared secret
-+ Verify the connection between ScanCentral Controller and SSC
-  + Open ScanCentral -> SAST -> Controller
-    + You must find information about ScanCentral Controller and if you find this message “there is no scancentral controller information to display” then the connection failed and you should investigate the issue.
+  + Verify the connection between ScanCentral Controller and SSC
+    + Open ScanCentral -> SAST -> Controller
+      + You must find information about ScanCentral Controller and if you find this message “there is no scancentral controller information to display” then the connection failed and you should investigate the issue
++ **Configuring the log level on the Controller**
+  + Open the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/log4j2.xml``` file in a text editor
+  + Locate one of the following strings
+    ```
+    <Logger name="com.fortify.cloud" level="info" additivity="false">
+    <Logger name="com.fortify.cloud.ctrl.service" level="info" additivity="false">
+    ```
+  + For a more detailed level of logging, change the level as shown in the following example
+    ```
+    <Logger name="com.fortify.cloud" level="debug" additivity="false">
+    ```
+  + To apply the changes, restart the Controller
+    + ```sc start SCanCentraller``` or from ```services.msc```
+
+> [!NOTE]
+> ScanCentral Controller supports two types of logging level
+> + info — An overview of what the application is doing
+> + debug — It contains detailed diagnostic information so, it's useful for troubleshooting
+
+<br/>
+
++ **Avoiding read timeout errors during attempts to upload large log files**
+  + To configure the connection timeout between the Controller and Fortify Software Security Center
+    + On the Controller, open the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file in a text editor
+    + Increase the value of the ```ssc_restapi_connect_timeout``` and ```ssc_restapi_read_timeout``` properties to an acceptable threshold (in milliseconds)
+    + Save the changes
+  + To configure the connection timeout between the Controller and a sensor
+    + On the sensor machine, open the ```<sast_install_dir>/Core/config/worker.properties``` file in a text editor
+    + Uncomment the ```restapi_connect_timeout``` and ```restapi_read_timeout``` properties, and then set the value of each to an acceptable threshold (in milliseconds)
+      + **Note:** you may not find these properties, so you can simply add them at the end of the file
+    + Save the changes
+  + To configure the connection timeout between the Controller and a client
+    + On the client machine, open the ```<client_install_dir>/Core/config/client.properties``` file in a text editor
+    + Uncomment the ```restapi_connect_timeout``` and ```restapi_read_timeout``` properties, and then set the value of each to an acceptable threshold (in milliseconds)
+    + Save the changes
+
 
 <br/>
 
@@ -78,7 +124,7 @@
   scapostinstall
   ```
     +	Then edit SSC Settings
-+ Edit <sca_install_dir>\Core\config\worker.properties
++ Edit ```<sca_install_dir>\Core\config\worker.properties```
   + worker_auth_token
 + Open cmd to setup the sensor service
   ```
@@ -101,7 +147,7 @@
 + Start the sensor
   + Set service to Automatic and LogOn as Local System then enable Allow service to interact with desktop.
   + Start FortifyScanCentralWorkerService service
-    + ```net start <service display-name>``` Or ```sc start <service-name>```
+    + ```net start <service display-name>``` or ```sc start <service-name>``` or from ```services.msc```
 + Review Configuring Sensors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
 + Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
 
@@ -127,6 +173,20 @@
 + Open ```<client_install_dir>/Core/config/client.properties``` in a text editor
 + Set the same value for the ```client_auth_token``` property that you set for the ```client_auth_token``` property on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
 + Save the file
+
+
+#### Configuration
++ Enabling debugging on clients and sensors
+  + Open cmd
+    ```
+    cd <sca_install_dir>\bin\
+    ```
+    ```
+    scancentral ‑debug ‑url <controller_url> worker
+    ```
+    ```
+    scancentral ‑debug ‑url <controller_url> start
+    ```
 
 <br/>
 
