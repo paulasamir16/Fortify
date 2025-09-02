@@ -10,15 +10,17 @@
 
 ### Install ScanCentral SAST Controller
 + Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Programs Files\Fortify```
-+ Make sure that the JRE_HOME and JAVA_HOME environment variables are correctly configured. [In System Variables]
++ Make sure that the ```JRE_HOME``` and ```JAVA_HOME``` environment variables are correctly configured into ```System Variables```
   + Enter ```JAVA_HOME``` as variable name and ```C:\Program Files\Java\jdk-11``` as Value
   + Enter ```JRE_HOME``` as variable name and ```C:\Program Files\Java\jre-11``` as Value
-+ Make sure that the CATALINA_HOME environment variable is either empty or set up to point to the ```<controller_install_dir>\tomcat``` directory
++ Make sure that the ```CATALINA_HOME``` environment variable is either empty or set up to point to the ```<controller_install_dir>\tomcat``` directory
 + Navigate to the ```<controller_install_dir>\tomcat\bin``` directory, then run the following
   + ```service.bat install ScanCentralController```
 + Configuring Java Memory for the Service
   + Run ```tomcat9w.exe``` from ```<controller_install_dir>\tomcat\bin``` directory
-  + In the Apache Tomcat Properties window, click the ```Java``` tab, and then set the ```Maximum memory pool``` value ----> 4096
+  + In the Apache Tomcat Properties window, click the ```Java``` tab, and then set the
+    + ```Initial memory pool``` value to ```2048```
+    + ```Maximum memory pool``` value to ```4096```
   + Restart the service
 + Create secure connection with Apache Tomcat
   ```
@@ -38,11 +40,10 @@
   + worker_auth_token
   + client_auth_token
   + max_upload_size
-  + ssc_url to ```http://192.168.1.67:8080/ssc```
+  + ssc_url to ```http/https://<hostname/IP>:<port>/ssc```
   + ssc_scancentral_ctrl_secret
-    + Don’t use #, use a simple secret such as Paul123
-  + this_url to ```https://<controller_host>:8443/scancentral-ctrl```
-  + lim_server_url to ```http://192.168.1.70/LIM.Admin```
+  + this_url to ```http/https://<controller_host/IP>:<port>/scancentral-ctrl```
+  + lim_server_url to ```http/https://<hostname/IP>/LIM.Admin```
   + lim_license_pool
   + lim_license_pool_password
   + client_auto_update=true
@@ -50,8 +51,8 @@
   + pool_mapping_mode — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/pool-map-mode.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____1)
 + Restart Tomcat ScanCentral service
 
-+ Review these
-  +	Encrypting the Shared Secret on the Controller — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
+> [!NOTE]
+> + If you want to encrypt the Shared Secret on the Controller, follow instructions from this [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/encrypt_pwds-ctrl.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257CConfiguring%2520the%2520%2520Controller%257C_____2)
 
 + Start the controller
   + Open cmd
@@ -59,8 +60,6 @@
       + ```startup.bat```
 > [!NOTE]
 > If you want to stop the Controller run ```shutdown.bat```
-
-+ Review Fortify ScanCentral SAST API — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
 
 
 #### Configuration
@@ -106,6 +105,9 @@
     + On the client machine, open the ```<client_install_dir>/Core/config/client.properties``` file in a text editor
     + Uncomment the ```restapi_connect_timeout``` and ```restapi_read_timeout``` properties, and then set the value of each to an acceptable threshold (in milliseconds)
     + Save the changes
+
+
++ Review Fortify ScanCentral SAST API — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#controller/sc-api.htm?TocPath=About%2520the%2520Fortify%2520ScanCentral%2520SAST%2520Controller%257C_____8)
 
 
 <br/>
