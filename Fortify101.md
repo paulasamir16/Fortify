@@ -6,7 +6,7 @@
 <br/>
 
 ## Key Components and Features
-> There are 3 main features offered by OpenText Fortfiy
+### There are three main features offered by OpenText Fortfiy
 
 **Dynamic Application Security Testing (DAST)**
 + It helps organizations identify and remediate security vulnerabilities in their web applications. Fortify DAST conducts dynamic analysis by simulating attacks against running web applications to detect common security flaws such as SQL injection, cross-site scripting (XSS), insecure authentication mechanisms, and more.
@@ -20,7 +20,7 @@
 
 <br/>
 
-> Good, Let's talk about components of every feature
+## Good, Let's talk about components of every feature
 ### Dynamic Application Security Testing (DAST)
 + [OpenText™ ScanCentral DAST](https://www.microfocus.com/documentation/fortify-ScanCentral-DAST/)
   + ScanCentral DAST Global Service
@@ -34,23 +34,42 @@
 <br/>
 
 ### Static Application Security Testing (SAST)
-+ OpenText™ Static Application Security Testing (OpenText SAST) — [Static Code Analyzer (SCA)](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)
-+ [OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-software-security-center/)
-  + Fortify ScanCentral SAST Controller
-  + Fortify ScanCentral SAST sensors
-  + Fortify ScanCentral SAST client
-+ [Tools](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-tgd-html-25.2.0/index.htm#GetStarted/sca-apps-tools.htm?TocPath=Getting%2520Started%257C_____2)
-  + sourceanalyzer
-  + Audit Workbench (AWB)
-  + Audit Assistant (AA)
-  + IDE Plugins
-    + SCA Plugin [Eclipse, IntelliJ, and Visual Studio, VS Code]
-    + Fortify Security Assistant Extension [Eclipse, IntelliJ, and Visual Studio, Android Studio]
-    + Remidation???????????????
-  + Fortify Scan Wizard
-  + Fortify Custom Rules Editor???????????????
-  + FPRUtility
-  + fortifyclient
++ **OpenText™ Static Application Security Testing (OpenText SAST) — [Static Code Analyzer (SCA)](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/)**
++ **[OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-software-security-center/)**
+  + **Fortify ScanCentral SAST Controller**
+    + It's a standalone server that sits between the Fortify ScanCentral SAST clients, sensors, and optionally, Fortify Software Security Center. The Controller accepts scan requests issued by the clients and assigns them to an available sensor. A sensor returns scan results to the Controller, which stores them temporarily.
+  + **Fortify ScanCentral SAST sensors (sourceanalyzer)**
+    + They are computers set up to receive scan requests and analyze code using Fortify Static Code Analyzer.
+  + **Fortify ScanCentral SAST client**
+    + 
++ **[Tools](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-tgd-html-25.2.0/index.htm#GetStarted/sca-apps-tools.htm?TocPath=Getting%2520Started%257C_____2)**
+  + **SAST sensors (sourceanalyzer)**
+  + **Audit Workbench (AWB)**
+    + Provides a graphical user interface for OpenText SAST analysis results that helps you organize, investigate, and prioritize analysis results so that developers can fix security flaws quickly.
+  + **Audit Assistant (AA)**
+  + **IDE Plugins**
+    + SCA Plugin (Eclipse, IntelliJ, and Visual Studio, VS Code)
+    + Fortify Security Assistant Extension (Eclipse, IntelliJ, Visual Studio and Android Studio)
+    + Remidation Plugin (Eclipse, IntelliJ and Android Studio)
+  + **Fortify Scan Wizard**
+    + 	Provides a graphical user interface that enables you to prepare a script to scan your code with OpenText SAST (either locally or remotely using Fortify ScanCentral SAST) and then optionally upload the results to Fortify Software Security Center
+  + **Fortify Custom Rules Editor**
+    + Provides a graphical user interface to create and edit custom rules
+  + **FPRUtility**
+    + Command-line tool that enables you to:
+      + Merge audited projects
+      + Verify FPR signatures
+      + Display information from an FPR file including:
+        + Any errors associated with the analysis
+        + Number of issues
+        + Filtered lists of issues in different formats
+        + Lines of code for analyzed files
+        + List of analyzed functions
+        + Mappings for a migrated project
+      + Combine or split source code files and audit projects into FPR files
+      + Alter an FPR
+  + **fortifyclient**
+    + Command-line utility to create Fortify Software Security Center authentication tokens and securely transfer objects to and from Fortify Software Security Center.
 
 <br/>
 
@@ -72,12 +91,12 @@
 
 <br/>
 
-> Additional Components
+### Additional Components
 #### Fortify on Demand (FoD)
 + An AppSec as a service offering that provides access to Fortify's tools and services.
 
-#### Application Security Aviator
-+ An AI code security tool that executes fast auditing, identification, and automated code fix suggestions for SAST vulnerabilities with the power of AI.
+#### [Application Security Aviator](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-aviator-ugd-html-25.2.0/index.htm)
++ It's a cloud-based enterprise service security tool that executes fast auditing, identification, and automated code fix suggestions for SAST vulnerabilities with the power of AI.
 + It embeds into your dev environment, using AI code analysis to continuously monitor code for security issues, and provides contextual explanations and tailored code fix suggestions.
 
 #### Sonatype
