@@ -112,7 +112,7 @@
 
 <br/>
 
-### Install SCA as a ScanCentral SAST Sensors
+### Install SCA as a ScanCentral SAST Sensors — Used by ```worker``` command
 + Download and extract ```Fortify_SCA_<version>_windows_x64```
 + Click on ```Fortify_SCA_<version>_windows_x64.exe```
 + Open cmd
@@ -150,7 +150,24 @@
   + Set service to Automatic and LogOn as Local System then enable Allow service to interact with desktop.
   + Start FortifyScanCentralWorkerService service
     + ```net start <service display-name>``` or ```sc start <service-name>``` or from ```services.msc```
-+ Review Configuring Sensors — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/config-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____0)_
+
+#### Configuration
++ **Configuring Job Cleanup Timing on Sensors**
+  + Navigate to the ```<sca_install_dir>/Core/config``` directory, and then open the ```worker.properties``` file in a text editor to add these properties
+    + worker_cleanup_age
+      + It's the age job files must be before they are removed from the sensor working directory — Default value (hours) is 168 (one week)
+    + worker_cleanup_interval
+      + It's frequency with which the cleanup process runs — Default value (hours) is 1 hour
+  + Save and close your ```worker.properties``` file
+  + Restart the sensor
++ 
+
+<br/>
+
++ [Setting the Maximum Run Time for Scans](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/max_scan_runtime.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____2)
++ [Encrypting the Shared Secret on a Sensor](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/encrypt-pwds-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____1)
++ [Changing Sensor Expiration Time](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/expiration.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____3)
+
 + Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
 
 <br/>
@@ -158,24 +175,27 @@
 ### Install ScanCentral SAST Clients
 > [!NOTE]
 > There are two methods to install SAST Clinets
-> + Installed beside SCA
-> + Installed without SCA
+> + Installed as an embedded client which is part of the Fortify Static Code Analyzer (SCA) — Used by ```start``` command
+> + Installed as a standalone client, which is independent of Fortify Static Code Analyzer (SCA)
 
-#### Installed beside SCA
+#### Embedded Client
 + Enter ```<sca_install_dir>/Core/config``` and open ```client.properties```
-+ Set the same value for the ```client_auth_token``` that you set for the ```client_auth_token``` on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
++ Set the same value for the ```client_auth_token``` that you set for the ```client_auth_token``` on the Controller (in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file)
 
 <br/>
 
-#### Installed without SCA
+#### Standalone Client
 + Download & extract the contents of the ```Fortify_ScanCentral_Client_<version>_x64.zip```
 + Add the ```<client_install_dir>/bin``` to your PATH environment variable
 + Add the ```JAVA_HOME``` environment variable
   + Important! If you have a Java 8 project that fails to build because Fortify ScanCentral SAST requires Java 11 or later to run, set the ```SCANCENTRAL_JAVA_HOME``` environment variable to point a supported version of Java.
 + Open ```<client_install_dir>/Core/config/client.properties``` in a text editor
-+ Set the same value for the ```client_auth_token``` property that you set for the ```client_auth_token``` property on the Controller [in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file]
++ Set the same value for the ```client_auth_token``` property that you set for the ```client_auth_token``` property on the Controller (in the ```<controller_install_dir>/tomcat/webapps/scancentral-ctrl/WEB-INF/classes/config.properties``` file)
 + Save the file
 
+> [!NOTE]
+> + A standalone client, which does not require Fortify Static Code Analyzer to be installed, can create a package of the code with its dependencies to send to the Controller for translation and scanning.
+> + Sensor functionality depends on Fortify Static Code Analyzer. So, you can have a standalone client, but not a standalone sensor.
 
 #### Configuration
 + Enabling debugging on clients and sensors
