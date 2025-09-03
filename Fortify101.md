@@ -41,12 +41,14 @@
   + **Fortify ScanCentral SAST sensors (sourceanalyzer)**
     + They are computers set up to receive scan requests and analyze code using Fortify Static Code Analyzer.
   + **Fortify ScanCentral SAST client**
-    + 
+    + Enables you to offload OpenText SAST analysis to Fortify ScanCentral SAST, which can perform remote translation and scan of your applications.
 + **[Tools](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-tgd-html-25.2.0/index.htm#GetStarted/sca-apps-tools.htm?TocPath=Getting%2520Started%257C_____2)**
   + **SAST sensors (sourceanalyzer)**
+    + 
   + **Audit Workbench (AWB)**
     + Provides a graphical user interface for OpenText SAST analysis results that helps you organize, investigate, and prioritize analysis results so that developers can fix security flaws quickly.
-  + **Audit Assistant (AA)**
+  + [**Audit Assistant (AA)**](https://www.microfocus.com/documentation/fortify-audit-assistant/)
+    + It helps you to predict which of the issues returned from OpenText Fortify Static Code Analyzer (Fortify Static Code Analyzer) represent true vulnerabilities and which do not.
   + **IDE Plugins**
     + SCA Plugin (Eclipse, IntelliJ, and Visual Studio, VS Code)
     + Fortify Security Assistant Extension (Eclipse, IntelliJ, Visual Studio and Android Studio)
@@ -103,6 +105,7 @@
 
 
 <br/>
+
 
 ## Installation Best Practice
 
