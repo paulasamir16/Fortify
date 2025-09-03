@@ -95,7 +95,7 @@
 
 
 > [!NOTE]
-> + Mobile Build Session (MBS), you can translate a project on one machine and scan it on another.
+> + With Mobile Build Session (MBS), you can translate a project on one machine and scan it on another.
 
 <br/>
 
@@ -106,7 +106,7 @@
 
 <br/>
 
-### Fortify Software Security Center (SSC) — [SSC-Documentation](https://www.microfocus.com/documentation/fortify-software-security-center/)
+### Fortify Software Security Center (SSC) — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/)
 + It's a browser-based application that provides a set of capabilities across the software development life cycle to automate detection of security vulnerabilities in applications. It helps your security and development teams work together to resolve security flaws quickly and accurately by making correlated data available from the following products:
   + OpenText™ Static Application Security Testing (OpenText SAST)
   + OpenText™ Fortify ScanCentral SAST
