@@ -118,7 +118,7 @@
 <br/>
 
 ### Additional Components
-#### Fortify on Demand (FoD)
+#### [Fortify on Demand (FoD)](https://www.microfocus.com/documentation/fortify-on-demand/)
 + An AppSec as a service offering that provides access to Fortify's tools and services.
 
 #### [Application Security Aviator](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-aviator-ugd-html-25.2.0/index.htm)
