@@ -42,9 +42,29 @@
     + They are computers set up to receive scan requests and analyze code using Fortify Static Code Analyzer.
   + **Fortify ScanCentral SAST client**
     + Enables you to offload OpenText SAST analysis to Fortify ScanCentral SAST, which can perform remote translation and scan of your applications.
-+ **[Tools](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-tgd-html-25.2.0/index.htm#GetStarted/sca-apps-tools.htm?TocPath=Getting%2520Started%257C_____2)**
-  + **SAST sensors (sourceanalyzer)**
-    + 
++ **[Tools and Commands](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2520/sast-tgd-html-25.2.0/index.htm#GetStarted/sca-apps-tools.htm?TocPath=Getting%2520Started%257C_____2)**
+  + **sourceanalyzer ```<sca_install_dir>/bin/```**
+    + It involves two main stages:
+      + Translation: The source code is translated into an intermediate representation Normalized Syntax Tree (NST files) that Fortify's analysis engines can understand.
+      + Analysis: Fortify's analysis engines process the translated code to identify vulnerabilities based on a comprehensive knowledge base of secure coding rules and algorithms.
+  + **scancentral ```<sca_install_dir>/bin/```**
+    + It's a tool used to interact with SAST Client and Sensor to translate and scan projects and also interacts with SSC to uplaod scan results.
+  + **packagescanner ```<sca_install_dir>/bin/```**
+    + It takes a project package, which is a file created by the scancentral package command, and then performs a static analysis scan on that package locally using a locally installed Fortify Static Code Analyzer (SCA) instance. This is particularly useful for quickly analyzing code before a full upload and analysis on the central controller.
+    + Also, you can use the tool to perform only the translation phase with ```--no-scan``` option on the project package and then submit it to the Controller for the analysis phase later. This provides flexibility in the scanning workflow.
+      ```
+      Example:
+
+      scancentral package -o MyProjPackage.zip
+      packagescanner -package MyProjPackage.zip -b xyz --no-scan
+      scancentral -sscurl <ssc_url> -ssctoken <token> start -b xyz -scan
+      ```
+  + **fcli**
+    + ??
+    + [Reference1](https://www.youtube.com/watch?v=_jQuOrP2viY)
+    + [Reference2](https://fortify.github.io/fcli/)
+    + [Reference3](https://github.com/fortify/fcli)
+    + [Reference4](https://github.com/janwienand/fcli-for-ssc-and-scancentral-sast/)
   + **Audit Workbench (AWB)**
     + Provides a graphical user interface for OpenText SAST analysis results that helps you organize, investigate, and prioritize analysis results so that developers can fix security flaws quickly.
   + [**Audit Assistant (AA)**](https://www.microfocus.com/documentation/fortify-audit-assistant/)
@@ -72,6 +92,10 @@
       + Alter an FPR
   + **fortifyclient**
     + Command-line utility to create Fortify Software Security Center authentication tokens and securely transfer objects to and from Fortify Software Security Center.
+
+
+> [!NOTE]
+> + Mobile Build Session (MBS), you can translate a project on one machine and scan it on another.
 
 <br/>
 
