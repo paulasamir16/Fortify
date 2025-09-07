@@ -135,16 +135,10 @@
   + If you want to use a plaintext password
   ```
   setupworkerservice.bat <sca_version> <controller_url> <shared_secret>
-
-  Example:
-  ???
   ```
   + If you want to use an encrypted password
   ```
   setupworkerservice.bat <sca_version> <controller_url> "<encrypted_shared_secret>" <path_to_pwtool.keys_file>
-
-  Example:
-  ???
   ```
 + Start the sensor
   + Set service to Automatic and LogOn as Local System then enable Allow service to interact with desktop.
@@ -164,11 +158,11 @@
 
 <br/>
 
-+ [Setting the Maximum Run Time for Scans](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/max_scan_runtime.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____2)
-+ [Encrypting the Shared Secret on a Sensor](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/encrypt-pwds-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____1)
-+ [Changing Sensor Expiration Time](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/expiration.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____3)
-
-+ Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)
+#### Additional Configuration
++ **[Setting the Maximum Run Time for Scans](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/max_scan_runtime.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____2)**
++ **[Encrypting the Shared Secret on a Sensor](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/encrypt-pwds-sensors.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____1)**
++ **[Changing Sensor Expiration Time](https://www.microfocus.com/documentation/fortify-software-security-center/2320/SC_SAST_Help_23.2.0/index.htm#sensors/expiration.htm?TocPath=About%2520Fortify%2520ScanCentral%2520SAST%2520Sensors%257CConfiguring%2520Sensors%257C_____3)**
++ **Add certificate to SCA Adding Trusted Certificates — [Reference](https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2320/SCA_Help_23.2.0/index.htm#install/PostInstall/add-trusted-certs.htm?TocPath=Installing%2520Fortify%2520Static%2520Code%2520Analyzer%257CPost-Installation%2520Tasks%257C_____7)**
 
 <br/>
 
@@ -229,7 +223,7 @@
 <br/>
 
 ### Install Plugins
-#### Plugins for Eclipse [Fortify SCA, Fortify Security Assistant, Fortify Remediation Plugin]
+#### Plugins for Eclipse (Fortify SCA, Fortify Security Assistant, Fortify Remediation Plugin)
 ##### Fortify SCA
 +	Help -> Install New Software
 +	Click Add and choose Local then locate the Eclipse plugin folder
@@ -246,7 +240,7 @@
 +	Accept restart eclipse after finish the installation
 
 
-##### Fortify Remediation Plugin [Also, you can install int from Eclipse Marketplace]
+##### Fortify Remediation Plugin (Also, you can install int from Eclipse Marketplace)
 +	Help -> Install New Software
 +	Click Add
 +	In the Location box, type ```https://tools.fortify.com/ssceclipseplugin```
@@ -261,7 +255,7 @@
 
 <br/>
 
-#### Plugins for Visual Studio [Fortify SCA, Fortify Security Assistant, SAST]
+#### Plugins for Visual Studio (Fortify SCA, Fortify Security Assistant, SAST)
 +	Open Visual Studio -> Extensions -> Manage Extensions
 +	Search for Fortify
 +	Install the 2 plugins
@@ -289,7 +283,7 @@
 ### Fortify Plugin for CI/CD Tools (Jenkins, GitHub, GitLab, Azure DevOps, Bamboo)
 #### Fortify Plugin for Jenkins
 +	Install Fortify from Manage Jenkins > Manage Plugins -> Available tab -> In the Filter box, type Fortify
-+	Create 2 token [CIToken, ScanCentralCtrlToken] from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them
++	Create 2 token (CIToken, ScanCentralCtrlToken) from SSC for SSC and ScanCentral SAST, then edit settings in Jenkins to integrate with them
 +	Install Missing Maven Plugins
 
 <br/>
@@ -331,10 +325,13 @@
 
 
 #### Azure DevOps
-
++ [Reference1](https://www.youtube.com/watch?v=7nUytfCmBAY&t)
++ [Reference2](https://share.cds.dominknow.one/735e6bb728ef9f7c4444571ab4bcfa28/d035c126-6b3d-3691-ae1b-a7f21d3f5d99/9CFA50DF-9547-0045-3963-77518E4ABE84/index.html)
 
 #### Bamboo
-
++ [Reference1](https://www.youtube.com/watch?v=6-6ZGZbFHDw)
++ [Reference2](https://www.youtube.com/watch?v=4Wd5ChngGMI&t)
++ [Reference3](https://www.microfocus.com/documentation/fortify-plugin-for-bamboo/13/Bamboo_Plugin_Guide_1.3.pdf)
 
 
 
