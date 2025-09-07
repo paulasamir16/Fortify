@@ -60,11 +60,11 @@
       scancentral -sscurl <ssc_url> -ssctoken <token> start -b xyz -scan
       ```
   + **fcli**
-    + ??
-    + [Reference1](https://www.youtube.com/watch?v=_jQuOrP2viY)
-    + [Reference2](https://fortify.github.io/fcli/)
-    + [Reference3](https://github.com/fortify/fcli)
-    + [Reference4](https://github.com/janwienand/fcli-for-ssc-and-scancentral-sast/)
+    + It's a command-line utility for interacting with various Fortify products
+      + [Reference1](https://www.youtube.com/watch?v=_jQuOrP2viY)
+      + [Reference2](https://fortify.github.io/fcli/)
+      + [Reference3](https://github.com/fortify/fcli)
+      + [Reference4](https://github.com/janwienand/fcli-for-ssc-and-scancentral-sast/)
   + **Audit Workbench (AWB)**
     + Provides a graphical user interface for OpenText SAST analysis results that helps you organize, investigate, and prioritize analysis results so that developers can fix security flaws quickly.
   + [**Audit Assistant (AA)**](https://www.microfocus.com/documentation/fortify-audit-assistant/)
@@ -100,9 +100,12 @@
 <br/>
 
 ### Software Composition Analysis (SCA)
-+ [Fortify Source Components Analysis scan — (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
-+ [Debricked Integration into Fortify Software Security Center (SSC)](https://www.youtube.com/watch?v=tDGg7cRqg7Y)
-
++ OpenText Fortfiy offers SCA scan across two products
+  + For Cloud Services (Fortify on Demand), they offer OpenText Debricked SCA product
+    + [Fortify Source Components Analysis scan — (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
+    + [Debricked Integration into Fortify Software Security Center (SSC)](https://www.youtube.com/watch?v=tDGg7cRqg7Y)
+  + For On-Premise Services, they offer an integration with Sonatype
+    + [Sonatype](https://support.cyberreshelp.com/hc/en-us/articles/15963630854295-Fortify-Source-Components-Analysis-scan-Sonatype-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
 
 <br/>
 
