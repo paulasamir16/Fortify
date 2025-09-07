@@ -1,4 +1,4 @@
-# Here, we will talk about Fortify Software Security Center and its database installation, configuration and upgrade
+# Here, we will talk about Fortify Software Security Center and his database installation, configuration and upgrade
 > [!NOTE]
 > Opentext Fortify supports many operating system [Supported platforms and architectures](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-platforms.htm?TocPath=System%2520requirements%257C_____2) and aslo supports many dbs [Supported Databases](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-db.htm?TocPath=System%2520requirements%257C_____4) but here you will install it on Windows Server and use SQL Server
 
@@ -16,7 +16,7 @@
 > There are hardware requirements for each version of SSC, so you can check it from here — [Hardware-requirements](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-reqs.htm?TocPath=System%2520requirements%257C_____0)
 
 + Must give static IP to database machine because we connect from SSC machine to database machine with jdbc
-  +  Or you can use hostname instead of IP
+  + Or you can use hostname instead of IP
 + [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) & Install SQL Server
   + After finish installation click on Customize and choose Create new instance then write a name such as ```SSCdb```
     + Choose Windows and SQL Authentication Mixed mode and add the machine user
@@ -119,7 +119,6 @@
     + On the navigation pane, expand Configuration, and then select Customization
     + Under Customized Banner, select the Display a custom banner system-wide check boxIn the Enter the text to display in the banner box, type the text for your banner
     + Click SAVE
-+ **You can create a banner for your organization on (Logon, Dashboard, Applications, Reports, and so on) — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/custom-banner.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____10)**
 + **Changing the Support Contact Link in the About Fortify SSC Box with support portal for your organization**
   + Sign in to SSC as an Administrator
   + On the header, select Administration
@@ -135,7 +134,6 @@
     + 2	- Medium
     + 3	- Strong
     + 4	- Very strong
-+ **Configuring email alert notification settings — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Email_Alerts.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520email%2520alert%2520notification%2520settings%257C_____0)**
 + **Blocking data export to CSV files**
   + To prevent users from exporting Fortify Software Security Center data to CSV files
     + Sign in to SSC as an Administrator
@@ -151,12 +149,6 @@
     + Under Fortify Insight URL, select the Enable display of the Fortify Insight URL on your Dashboard check box
     + In the Fortify Insight URL box, enter the URL for your Fortify Insight page
     + Click SAVE
-+ **[Enabling the priority override capability](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#auditing/Priority_Override.htm?TocPath=Collaborative%2520auditing%257CAuditing%2520analysis%2520results%257C_____4)**
-+ **[Configuring Issue Stats thresholds](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Issue_Age.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____2)**
-+ **[Configuring application security training](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config_training.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____3)**
-+ **[Configuring core settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config-core.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520core%2520settings%257C_____0)**
-+ **[Configuring Java Message Service settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_JMS_settings.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____14)**
-+ **[Configuring a proxy for integrations](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_proxy.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____18)**
 + **Enabling the running and management of OpenText ScanCentral DAST scans (Enable integration with OpenText ScanCentral DAST with SSC)**
   + Enable OpenText ScanCentral DAST integration in Fortify Software Security Center by doing the following
     + Sign in to SSC as an Administrator
@@ -168,11 +160,21 @@
       + ```http://<DAST_API_IP>:<port>/api/```
         + You can use the https protocol instead
       + Click SAVE
+
+#### Additional Configuration
++ **[Configuring core settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config-core.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520core%2520settings%257C_____0)**
++ **You can create a banner for your organization on (Logon, Dashboard, Applications, Reports, and so on) — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/custom-banner.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____10)**
++ **Configuring email alert notification settings — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Email_Alerts.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257CConfiguring%2520email%2520alert%2520notification%2520settings%257C_____0)**
++ **[Enabling the priority override capability](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#auditing/Priority_Override.htm?TocPath=Collaborative%2520auditing%257CAuditing%2520analysis%2520results%257C_____4)**
++ **[Configuring Issue Stats thresholds](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_Issue_Age.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____2)**
++ **[Configuring application security training](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/config_training.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____3)**
++ **[Configuring Java Message Service settings](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_JMS_settings.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____14)**
++ **[Configuring a proxy for integrations](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Config_proxy.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____18)**
++ **[Setting the strategy for resolving issue audit conflicts](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Aud_Conflict_Strat.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____13)**
 + **Supported service integrations**
   + [Reference-One](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-service-integrations.htm?TocPath=System%2520requirements%257C_____9)
   + [Reference-Two](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/deploy-overview.htm?TocPath=Deploying%2520Fortify%2520Software%2520Security%2520Center%257C_____1)
   + [Reference-Three](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/components.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____1)
-+ **[Setting the strategy for resolving issue audit conflicts](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#config-ssc/Aud_Conflict_Strat.htm?TocPath=Additional%2520Fortify%2520Software%2520Security%2520Center%2520configuration%257C_____13)**
 
 <br/>
 
