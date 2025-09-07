@@ -38,7 +38,7 @@
 + **[OpenText™ Fortify ScanCentral SAST](https://www.microfocus.com/documentation/fortify-software-security-center/)**
   + **Fortify ScanCentral SAST Controller**
     + It's a standalone server that sits between the Fortify ScanCentral SAST clients, sensors, and optionally, Fortify Software Security Center. The Controller accepts scan requests issued by the clients and assigns them to an available sensor. A sensor returns scan results to the Controller, which stores them temporarily.
-  + **Fortify ScanCentral SAST sensors (sourceanalyzer)**
+  + **Fortify ScanCentral SAST sensors**
     + They are computers set up to receive scan requests and analyze code using Fortify Static Code Analyzer.
   + **Fortify ScanCentral SAST client**
     + Enables you to offload OpenText SAST analysis to Fortify ScanCentral SAST, which can perform remote translation and scan of your applications.
@@ -78,10 +78,10 @@
   + **Fortify Custom Rules Editor**
     + Provides a graphical user interface to create and edit custom rules
   + **FPRUtility**
-    + Command-line tool that enables you to:
+    + Command-line tool that enables you to
       + Merge audited projects
       + Verify FPR signatures
-      + Display information from an FPR file including:
+      + Display information from an FPR file including
         + Any errors associated with the analysis
         + Number of issues
         + Filtered lists of issues in different formats
@@ -120,6 +120,11 @@
 
 <br/>
 
+### [Fortify License and Infrastructure Manager (LIM)](https://www.microfocus.com/documentation/fortify-core-documents/2520/LIM_Guide_25.2.0.pdf)
++ It enables you to centrally manage the concurrent licenses for your OpenText Fortify products.
+
+<br/>
+
 ### Additional Components
 #### [Fortify on Demand (FoD)](https://www.microfocus.com/documentation/fortify-on-demand/)
 + An AppSec as a service offering that provides access to Fortify's tools and services.
@@ -140,14 +145,10 @@
   + SSC
   + LIM and DAST Components
   + Database for SSC and DAST
-  + Webinspect
+  + WebInspect
     + Can be installed on Penetration testing team machines
+  + WebInspect Enterprise
+    + Can be installed on manager/team-lead of Penetration testing team
   + SAST Controller
   + SCA sensor, client and Plugins
     + Can be installed on developer and CI/CD tools machines
-
-
-
-
-
-
