@@ -126,13 +126,22 @@
 + It embeds into your dev environment, using AI code analysis to continuously monitor code for security issues, and provides contextual explanations and tailored code fix suggestions.
 
 #### Sonatype
-
++ Fortify integrate with Sonatype product to make the Fortify Source Components Analysis (SCA) scan
++ [How to integrate Sonatype with Fortify](https://help.sonatype.com/en/sonatype-fortify-ssc.html)
+  + [Jar-File](https://marketplace.opentext.com/cybersecurity/content/sonatype-for-fortify-ssc)
 
 <br/>
 
-
 ## Installation Best Practice
-
++ For a good performace, you should install the Fortfiy Components on separate virtual machines
+  + SSC
+  + LIM and DAST Components
+  + Database for SSC and DAST
+  + Webinspect
+    + Can be installed on Penetration testing team machines
+  + SAST Controller
+  + SCA sensor, client and Plugins
+    + Can be installed on developer and CI/CD tools machines
 
 
 
