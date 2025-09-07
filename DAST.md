@@ -126,12 +126,11 @@
   ```
   pull-and-start-twofactorauth-container.ps1
   ```
-
-+ **Paul I need to be sure if they are pulled and running**
++ Make sure if they are pulled and running
+  + ```docker container ls -a```
 + Log in to Fortify SSC and enable ScanCentral DAST in the ADMINISTRATION view
   + ```http://<DAST_API_Hostname>:<Port>/api/```
   + ```http://<DAST_API_IP_Address>:<Port>/api/```
-
 + Copy the ```Master Token``` then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
 + Write these in boxes input
   + my_2fa
@@ -171,7 +170,7 @@
 
 <br/>
 
-### Install .NET & Java Agents [Installed On Web Server]
+### Install .NET & Java Agents (Installed on Web Server)
 + Download & extract ```WebinspectAgent_xx.x.zip```
 
 
@@ -191,4 +190,11 @@
   + Restart Apache Tomcat
 
 
+## Upgrade DAST Components
++ sOOn
+
+<br/>
+
+## Upgrade LIM
++ sOOn
 
