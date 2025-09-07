@@ -8,7 +8,7 @@
 
 ### LIM Installation
 + Install Hyper-V and containers from Server Manager
-+ Download & Install Docker Engine — [Docker-URL](https://docs.docker.com/engine/install/binaries/)
++ Download & Install Docker Engine — [Reference](https://docs.docker.com/engine/install/binaries/)
 + Add docker path to environment variables
 + Installing IIS, ASP.NET, .NET Framework, and Hyper-V from Server Manager
   + Web Server (IIS)
@@ -132,11 +132,11 @@
   + ```http://<DAST_API_Hostname>:<Port>/api/```
   + ```http://<DAST_API_IP_Address>:<Port>/api/```
 
-+ Copy the Master Token then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
++ Copy the ```Master Token``` then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
 + Write these in boxes input
   + my_2fa
   + ```https://[IP]:443/```
-  + Paste Master Token
+  + Paste the ```Master Token```
 
 <br/>
 
@@ -152,7 +152,7 @@
   +	Configure the API Server settings
     +	Host (try to put SSC URL)
     +	Port
-    +	Authentication, and Use HTTPs [None]
+    +	Authentication, and Use HTTPs (None)
     +	Log Level (Search for difference)
 + Test API or click start
 + Installing and Configuring the DAST Sensor Service
