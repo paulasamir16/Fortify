@@ -6,7 +6,7 @@
 <br/>
 
 ## Key Components and Features
-### There are three main features offered by OpenText Fortfiy
+### There are three main features offered by OpenText Fortify
 
 **Dynamic Application Security Testing (DAST)**
 + It helps organizations identify and remediate security vulnerabilities in their web applications. Fortify DAST conducts dynamic analysis by simulating attacks against running web applications to detect common security flaws such as SQL injection, cross-site scripting (XSS), insecure authentication mechanisms, and more.
@@ -48,7 +48,7 @@
       + Translation: The source code is translated into an intermediate representation Normalized Syntax Tree (NST files) that Fortify's analysis engines can understand.
       + Analysis: Fortify's analysis engines process the translated code to identify vulnerabilities based on a comprehensive knowledge base of secure coding rules and algorithms.
   + **scancentral ```<sca_install_dir>/bin/```**
-    + It's a tool used to interact with SAST Client and Sensor to translate and scan projects and also interacts with SSC to uplaod scan results.
+    + It's a tool used to interact with SAST Client and Sensor to translate and scan projects and also interacts with SSC to upload scan results.
   + **packagescanner ```<sca_install_dir>/bin/```**
     + It takes a project package, which is a file created by the scancentral package command, and then performs a static analysis scan on that package locally using a locally installed Fortify Static Code Analyzer (SCA) instance. This is particularly useful for quickly analyzing code before a full upload and analysis on the central controller.
     + Also, you can use the tool to perform only the translation phase with ```--no-scan``` option on the project package and then submit it to the Controller for the analysis phase later. This provides flexibility in the scanning workflow.
@@ -68,11 +68,12 @@
   + **Audit Workbench (AWB)**
     + Provides a graphical user interface for OpenText SAST analysis results that helps you organize, investigate, and prioritize analysis results so that developers can fix security flaws quickly.
   + [**Audit Assistant (AA)**](https://www.microfocus.com/documentation/fortify-audit-assistant/)
-    + It helps you to predict which of the issues returned from OpenText Fortify Static Code Analyzer (Fortify Static Code Analyzer) represent true vulnerabilities and which do not.
+    + It helps you to predict which of the issues returned from OpenText Fortify Static Code Analyzer represent true vulnerabilities and which do not.
+    + AA uses machine learning to prioritize issues based on historical audits.
   + **IDE Plugins**
     + SCA Plugin (Eclipse, IntelliJ, and Visual Studio, VS Code)
     + Fortify Security Assistant Extension (Eclipse, IntelliJ, Visual Studio and Android Studio)
-    + Remidation Plugin (Eclipse, IntelliJ and Android Studio)
+    + Remediation Plugin (Eclipse, IntelliJ and Android Studio)
   + **Fortify Scan Wizard**
     + 	Provides a graphical user interface that enables you to prepare a script to scan your code with OpenText SAST (either locally or remotely using Fortify ScanCentral SAST) and then optionally upload the results to Fortify Software Security Center
   + **Fortify Custom Rules Editor**
@@ -95,12 +96,12 @@
 
 
 > [!NOTE]
-> + With Mobile Build Session (MBS), you can translate a project on one machine and scan it on another.
+> + Mobile Build Session (MBS) enables translation on one machine and scanning on another, improving scalability
 
 <br/>
 
 ### Software Composition Analysis (SCA)
-+ OpenText Fortfiy offers SCA scan across two products
++ OpenText Fortify offers SCA scan across two products
   + For Cloud Services (Fortify on Demand), they offer OpenText Debricked SCA product
     + [Fortify Source Components Analysis scan — (Debricked SCA)](https://support.cyberreshelp.com/hc/en-us/articles/16745069052695-Fortify-Source-Components-Analysis-scan-Debricked-SCA-how-to-initiate-it-and-how-to-integrate-with-Fortify-SSC)
     + [Debricked Integration into Fortify Software Security Center (SSC)](https://www.youtube.com/watch?v=tDGg7cRqg7Y)
@@ -141,7 +142,7 @@
 <br/>
 
 ## Installation Best Practice
-+ For a good performace, you should install the Fortfiy Components on separate virtual machines
++ For a good performance, you should install the Fortify Components on separate virtual machines
   + SSC
   + LIM and DAST Components
   + Database for SSC and DAST
