@@ -94,8 +94,8 @@
 + SSC URL: ```https://<IP>:8443/ssc```, Next
 + Choose ```SQL Server```
 + Write ```Database Username``` and ```Database Password``` of database
-+ JDBC URL: ```jdbc:sqlserver://[database-IP]:1433;database=[database-name];encrypt=true;trustServerCertificate=true;rewriteBatchedStatements=true;sendStringParametersAsUnicode=false```
-+ Click on ```Test Connection```, Next
++ JDBC URL: ```jdbc:sqlserver://<database-IP>:1433;database=<database-name>;encrypt=true;trustServerCertificate=true;rewriteBatchedStatements=true;sendStringParametersAsUnicode=false```
++ Click on **Test Connection**, Next
 + Click **Browse** and select the Bundle file (Upload one-by-one and after every one click **Seed Database**), then click Next after finishing
   + ```Fortify_Process_Seed_Bundle-2023_Q1_<build>.zip``` file (Required)
   + ```Fortify_Report_Seed_Bundle-2023_Q1_<build>.zip``` file (Required)
