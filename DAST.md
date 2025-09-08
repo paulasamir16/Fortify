@@ -18,7 +18,7 @@
   + In the Edit Site Binding dialog box in IIS, add a host name for the HTTPS binding
 + Sign up at Docker Hub then send your docker ID to this mail ```mfi-fortifydocker@opentext.com``` to join docker group and pull LIM image
   + Pull a LIM Docker image to host machine
-    + Open PowerShell and login to docker by ```docker login``` and then pull the image
+    + Open **PowerShell** and login to docker by ```docker login``` and then pull the image
       ```
       docker pull fortifydocker/lim:<version>
 
@@ -134,14 +134,45 @@
 + Copy the ```Master Token``` then open SSC -> ScanCentral -> DAST -> Two Factor Authentication -> + New 2FA SERVER
 + Write these in boxes input
   + my_2fa
-  + ```https://[IP]:443/```
+  + ```https://<IP>:443/```
   + Paste the ```Master Token```
 
 <br/>
 
 ### Install Webinspect
-+ Right click on webinspect exe/msi to install, click Next, Next
-+ Connect to DB Server with create new db and choose ```SQL Auth```
++ First, install SQL Server as we did with SSC database
++ Double-click on webinspect exe/msi to install and click Next, then accept the End‑User License Agreement and click Next
++ Leave the default Destination Folder as configured and click Next
++ Sensor Configuration **(optional)**
+  + Enter the Enterprise Manager URL (The URL of Fortify WebInspect Enterprise manager)
+  + In the Sensor Authentication group, enter the following Windows account credentials for this sensor
+    + In the User Name box, type the sensor user name
+    + In the Password and Confirm Password boxes, type the password for the sensor user
++ Click Next, then Install
++ Make sure that **Launch OpenText DAST <version>** is enabled and click Finish
++ SQL Server Express Is Not Installed
+  + Choose **Run WebInspect now and enter remote SQL Server credentials**
+  + Configure SQL Server
+    + Put the Server name (Device Name)
+    + Log on to the server (Choose one of these)
+      + Use Windows Authentication
+      + Use SQL Server Authentication
+        + Username
+        + Password
+    + Connect to a database
+      +  Enter a database name and then click on Create
+    + Click Ok, then Ok and then Ok again
++ Click Activate Now
+  + You have 3 method to activate webinspect
+    + Connect directly to OpenText corporate license server (The Activation-Token is sent to you across mail)
+      + Enter the Activation-Token
+      + User Information
+        + Company Name
+        + Email
+        + First Name
+        + Last Name
+    + Install License File
+    + Connect to Fortify License and Infrastructure Manager
 + Connect to LIM to activate webinspect or activate it directly
 + Configure and start the WebInspect REST API
   +	Add Webinspect PATH to Environment variable
