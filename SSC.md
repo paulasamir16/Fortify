@@ -104,8 +104,8 @@
 > [!NOTE]
 > The seed bundle files are included in the Fortify Software Security Center installation package. After your initial deployment, you can download off-cycle seed bundles from the [Application Security Customer Portal](https://support.fortify.com/secure/index.jsp) under the PREMIUM CONTENT > FORTIFY EXCHANGE
 + Restart Apache and the browser [Or restart the machine]
-+ Login with admin & admin then you will prompte to change the password
-  + Note: SSC stores and retrieves Credentials from the database
++ Login with admin & admin then you will prompt to change the password
+  + **Note:** SSC stores and retrieves credentials from the database
 
 <br/>
 
