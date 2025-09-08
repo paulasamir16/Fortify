@@ -1,9 +1,9 @@
-# Here, we will talk about Fortify Software Security Center and his database installation, configuration and upgrade
+# Here, we will talk about Fortify Software Security Center and its database installation, configuration and upgrade
 > [!NOTE]
-> Opentext Fortify supports many operating system [Supported platforms and architectures](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-platforms.htm?TocPath=System%2520requirements%257C_____2) and aslo supports many dbs [Supported Databases](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-db.htm?TocPath=System%2520requirements%257C_____4) but here you will install it on Windows Server and use SQL Server
+> Opentext Fortify supports many operating system [Supported platforms and architectures](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-platforms.htm?TocPath=System%2520requirements%257C_____2) and aslo supports many dbs [Supported Databases](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#sys-reqs/ssc-db.htm?TocPath=System%2520requirements%257C_____4) but in this guide we will install it on Windows Server and use SQL Server
 
 > [!NOTE]
-> There are 3 methods to deploy Fortify Software Security Center (SSC)
+> There are three methods to deploy Fortify Software Security Center (SSC)
 > 1. Manual (Here, we talk about this method)
 > 2. [Automated](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#adv-config/auto-config.htm)
 > 3. [In Kubernetes](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/deploy-kubernetes.htm?TocPath=Deploying%2520Fortify%2520Software%2520Security%2520Center%257C_____5)
@@ -18,14 +18,14 @@
 + Must give static IP to database machine because we connect from SSC machine to database machine with jdbc
   + Or you can use hostname instead of IP
 + [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) & Install SQL Server
-  + After finish installation click on Customize and choose Create new instance then write a name such as ```SSCdb```
+  + After finish installation click on Customize, choose Create new instance then write a name such as ```SSCdb```
     + Choose Windows and SQL Authentication Mixed mode and add the machine user
 + Open SSMS with Windows Authentication
 + Create new user with this permission — [Reference](https://www.microfocus.com/documentation/fortify-software-security-center/2520/ssc-ugd-html-25.2.0/index.htm#deploy-ssc/db-account-perms.htm)
   + Security -> Logins -> Right-click -> New Login -> SQL Authentication
 + Login with this new user
 + Create new database
-  + Make Collation = ```SQL_Latin1_General_CP1_CS_AS```
+  + Set the database collation to ```SQL_Latin1_General_CP1_CS_AS```
 + Enable
   + ```(AUTO_UPDATE_STATISTICS_ASYNC)```
   + ```(ANSI_NULL_DFLT_ON)```
@@ -33,7 +33,7 @@
   + ```(READ_COMMITTED_SNAPSHOT)```
 + Open this path ```Fortify_SSC_<version>\Fortify_<version>_Server_WAR_Tomcat.zip\sql\sqlserver\``` and execute the ```create-tables``` file
 + Enable TCP/IP from ```SQL Server Configuration``` with port 1433
-+ Disable Firewall or open port 1433
++ Either disable Firewall or open port 1433
 
 <br/>
 
@@ -48,22 +48,24 @@
 + Create new folder, for example ``C:\Fortify``
 + Open Apache configuration -> Java -> Java Option ```-Dfortify.home=C:\Fortify``` -> Initial memory pool ```2048``` -> Maximum memory pool ```4096``` -> Apply > Save
 + Configure SSL/TLS Certificate to use https
-  ```
-  cd C:\Program Files\Java\jdk-17\bin
-  ```
-  ```
-  keytool -genkey -alias mykey -keyalg RSA -keystore C:\mykeystore
-  ```
-  ```
-  keytool -export -alias mykey -keystore C:\mykeystore -file "sscert.cer"
-  ```
-  + Edit tomcat/conf/server.xml
+  + Open cmd
+    ```
+    cd C:\Program Files\Java\jdk-17\bin
+    ```
+    ```
+    keytool -genkey -alias mykey -keyalg RSA -keystore C:\mykeystore
+    ```
+    ```
+    keytool -export -alias mykey -keystore C:\mykeystore -file "sscert.cer"
+    ```
+  + Edit tomcat/conf/server.xml with any text editor
     ```
     <Connector port="8443" maxThreads="200"
     scheme="https" secure="true" SSLEnabled="true"
     keystoreFile="<mykeystore>" keystorePass="<mypassword>"
     clientAuth="false" sslProtocol="TLS"/>
     ```
+  + Open cmd
     ```
     cd "C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin"
     ```
@@ -79,7 +81,7 @@
     <secure>true</secure> </cookie-config>
     </session-config>
     ```
-+ Open ```https://[IP]:8443/ssc``` on browser
++ Open ```https://<IP>:8443/ssc``` on browser
 > [!NOTE]
 > You can use a hostname instead of IP by configure the hosts file ```C:\Windows\System32\drivers\etc\hosts```
 >  ```
@@ -89,12 +91,12 @@
 >  ```
 + Put token key from ```C:\Fortify\init.token```, Next
 + Upload the license, Next
-+ SSC URL: ```https://[IP]:8443/ssc```, Next
++ SSC URL: ```https://<IP>:8443/ssc```, Next
 + Choose ```SQL Server```
 + Write ```Database Username``` and ```Database Password``` of database
 + JDBC URL: ```jdbc:sqlserver://[database-IP]:1433;database=[database-name];encrypt=true;trustServerCertificate=true;rewriteBatchedStatements=true;sendStringParametersAsUnicode=false```
 + Click on ```Test Connection```, Next
-+ Click Browse and select the Bundle file [Upload one-by-one and after every one click ```Seed Database```], Next after finishing
++ Click **Browse** and select the Bundle file (Upload one-by-one and after every one click **Seed Database**), then click Next after finishing
   + ```Fortify_Process_Seed_Bundle-2023_Q1_<build>.zip``` file (Required)
   + ```Fortify_Report_Seed_Bundle-2023_Q1_<build>.zip``` file (Required)
   + ```Fortify_PCI_SSF_Basic_Seed_Bundle-2023_Q1_<build>.zip``` file (Optional)
@@ -102,8 +104,8 @@
 > [!NOTE]
 > The seed bundle files are included in the Fortify Software Security Center installation package. After your initial deployment, you can download off-cycle seed bundles from the [Application Security Customer Portal](https://support.fortify.com/secure/index.jsp) under the PREMIUM CONTENT > FORTIFY EXCHANGE
 + Restart Apache and the browser [Or restart the machine]
-+ Login with admin & admin the he will ask you to change the password
-  + Note: SSC get Credentials from the database
++ Login with admin & admin then you will prompte to change the password
+  + Note: SSC stores and retrieves Credentials from the database
 
 <br/>
 
