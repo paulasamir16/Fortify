@@ -9,7 +9,7 @@
 <br/>
 
 ### Install ScanCentral SAST Controller
-+ Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Programs Files\Fortify```
++ Download & extract the contents of the ```Fortify_ScanCentral_Controller_<version>_x64.zip``` in ```C:\Program Files\Fortify```
 + Make sure that the ```JRE_HOME``` and ```JAVA_HOME``` environment variables are correctly configured into ```System Variables```
   + Enter ```JAVA_HOME``` as variable name and ```C:\Program Files\Java\jdk-11``` as Value
   + Enter ```JRE_HOME``` as variable name and ```C:\Program Files\Java\jre-11``` as Value
@@ -125,7 +125,7 @@
   ```
   scapostinstall
   ```
-    +	Then edit SSC Settings
+    +	Then edit SSC Settings like SSC URL, Username, and get updates from SSC
 + Edit ```<sca_install_dir>\Core\config\worker.properties```
   + worker_auth_token
 + Open cmd to setup the sensor service
@@ -168,7 +168,7 @@
 
 ### Install ScanCentral SAST Clients
 > [!NOTE]
-> There are two methods to install SAST Clinets
+> There are two methods to install SAST Clients
 > + Installed as an embedded client which is part of the Fortify Static Code Analyzer (SCA) — Used by ```start``` command
 > + Installed as a standalone client, which is independent of Fortify Static Code Analyzer (SCA)
 
@@ -336,5 +336,5 @@
 
 
 ## Upgrading SAST Components
-+ sOOn
++ Coming soon
 
