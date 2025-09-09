@@ -141,15 +141,17 @@
 
 ### Install Webinspect
 + First, install SQL Server as we did with SSC database
-+ Double-click on webinspect exe/msi to install and click Next, then accept the End‑User License Agreement and click Next
-+ Leave the default Destination Folder as configured and click Next
++ Download the WebInspect package from portal (https://sld.microfocus.com/mysoftware/download/downloadCenter)
++ Extract the zip folder
++ Double-click on ```webinspect msi``` file to install and click **Next**, then accept the End‑User License Agreement and click **Next**
++ Leave the default Destination Folder as configured and click **Next**
 + Sensor Configuration **(optional)**
   + Enter the Enterprise Manager URL (The URL of Fortify WebInspect Enterprise manager)
   + In the Sensor Authentication group, enter the following Windows account credentials for this sensor
     + In the User Name box, type the sensor user name
     + In the Password and Confirm Password boxes, type the password for the sensor user
-+ Click Next, then Install
-+ Make sure that **Launch OpenText DAST <version>** is enabled and click Finish
++ Click **Next**, then **Install**
++ Make sure that **Launch OpenText DAST <version>** is enabled and click **Finish**
 + SQL Server Express Is Not Installed
   + Choose **Run WebInspect now and enter remote SQL Server credentials**
   + Configure SQL Server
@@ -161,71 +163,124 @@
         + Password
     + Connect to a database
       +  Enter a database name and then click on Create
-    + Click Ok, then Ok and then Ok again
-+ Click Activate Now
-  + You have 3 method to activate webinspect
-    + Connect directly to OpenText corporate license server (The Activation-Token is sent to you across mail)
+    + Click **Ok**, then **Ok** and then **Ok** again
++ Click **Activate Now**
+  + You have three methods to activate webinspect
+    + Connect directly to OpenText corporate license server — (The Activation-Token is sent to you across mail)
       + Enter the Activation-Token
+      + Disable Network Proxy is you don't have one
       + User Information
         + Company Name
         + Email
         + First Name
         + Last Name
-    + Install License File
-    + Connect to Fortify License and Infrastructure Manager
-+ Connect to LIM to activate webinspect or activate it directly
-+ Configure and start the WebInspect REST API
-  +	Add Webinspect PATH to Environment variable
-  +	From the Windows Search, click on Fortify Monitor
-  +	Open Internet Explorer and click Enable
-  +	Right-click on Fortify Monitor on hidden icons, and select Configure WebInspect API
-  +	Configure the API Server settings
-    +	Host (try to put SSC URL)
-    +	Port
-    +	Authentication, and Use HTTPs (None)
-    +	Log Level (Search for difference)
-+ Test API or click start
-+ Installing and Configuring the DAST Sensor Service
-+ Extract ```ScanCentral DAST – Sensor Service``` which exists at WebInspect folder in webinspect machine at this PATH ```C:\ScannerService```
-  + Replace the ```appsettings.json``` file that the ScanCentral DAST Configuration Tool created by the existing file in ```C:\ScannerService```
-  + Run this on cmd
-    ```
-    sc create ScannerWorkerService binpath= "C:\ScannerService \DAST.ScannerWorkerService.exe" start= auto depend= "WebInspect API" displayname= "WebInspect DAST Scanner Worker Service"
-    ```
-  + Restart
-  + Open Windows Services Manager ```services.msc```
-  + Right click on the scanner worker service ```ScannerWorkerService```
-  + Configure the user account and password under which the service should run
-  + Apply the changes
-  + Start the service
+    + Install License File — (Download the license from the portal)
+      + Activation Token
+      + License Request File
+        + Click **File** and save the file with the chosen name at the default path, then click **Next**
+        + Go to (https://licenseservice.fortify.microfocus.com/OfflineLicensing.aspx) and choose **Generate by a Fortify WebInspect Install** then click **Next**
+        + Click **Browse** and choose the file that you saved, then click **Process Request File**
+        + Click Retrieve Response File and locate a path to save the LicenseResp.xml file then click **Save**
+        + Click Next, then click Finish
+    + Connect to Fortify License and Infrastructure Manager — (Get Activation-Token from LIM)
+      + License and Infrastructure Manager
+        + URL — (LIM URL)
+        + Pool Name
+        + Password
+      + Network Authorization — (LIM Credentials)
+        + User Name
+        + Password
+      + Network Proxy — (Disable it you don't have one)
+      + Click **Next** and then choose one of these
+        + Connected License — WebInspect run only when the computer is able to contact the LIM
+        + Detached License — WebInspect run anywhere until the license reach the expiration date
+      + Click **Next**, then click **Finish**
+
+<br/>
+
+### Configuration
++ **Configure and start the WebInspect REST API**
+  +	From the Windows Search, search for **Fortify Monitor**
+  +	Right-click on **Fortify Monitor** from **Show hidden icons**, and select **Configure WebInspect API**
+    +	**Note:** If you don't find it, you can search for **Fortify Monitor** from **Windows Search**
+    +	Configure the API Server settings
+      +	Host (The default setting is **+** — This is a wild card)
+        +	You can put the URL that you can only access the API from it
+      +	Port — (Change it to ```8443```)
+      +	Authentication — (None, Basic, Windows, Client Certificate)
+        +	For Basic, click **Edit passwords...** and edit the ```username1:password1``` to your username & password such as ```paul:paulasamir``` then click ```Ctrl+S``` to save the file, finally close the file
+      +	Enable **Use HTTPS**
+        +	Open PowerShell and put this script
+          ```
+          $rootcertID = (New-SelfSignedCertificate -DnsName "DO NOT TRUST - WIRC Test Root CA","localhost", "$($env:computername)" -CertStoreLocation "cert:\LocalMachine\My").Thumbprint
+          $rootcert = (Get-Item -Path "cert:\LocalMachine\My\$($rootcertID)")
+
+          $trustedRootStore = (Get-Item -Path "cert:\LocalMachine\Root")
+          $trustedRootStore.open("ReadWrite")
+          $trustedRootStore.add($rootcert)
+          $trustedRootStore.close()
+          
+          netsh http add sslcert ipport=0.0.0.0:8443 certhash=$($rootcertID) appid="{160e1003-0b46-47c2-a2bc-01ea1e49b9dc}"
+          ``` 
+      +	Log Level — (Info, Debug, Warn, Critical)
+        +	Choose one of them according to your requirements
+        +	**Note:** The log files are located under **Applications and Services Logs > WebInspect API**
+    + Click **Test API** or click **Start**
+
++ **Installing and Configuring the DAST Sensor Service**
+  + Extract ```ScanCentral DAST – Sensor Service``` folder which is located at WebInspect folder in webinspect machine at this PATH ```C:\ScannerService```
+    + Replace the ```appsettings.json``` file which the ScanCentral DAST Configuration Tool created where ScanCentral DAST install by the existing ```appsettings.json``` file at ```C:\ScannerService``` folder
+    + Open cmd and run this command
+      ```
+      sc create ScannerWorkerService binpath= "C:\ScannerService \DAST.ScannerWorkerService.exe" start= auto depend= "WebInspect API" displayname= "WebInspect DAST Scanner Worker Service"
+      ```
+  + Open **Windows Services Manager** with ```Win+R``` and write ```services.msc```
+  + Right-click on the scanner worker service ```ScannerWorkerService```
+    + Nevigate to Log On and choose **This account:** then click **Browse** and choose the user and fill in the **Password** and **Confirm password**
+    + Click **Apply** then click **OK**
+  + Finally, start the service and make it run Automatically
+
++ **Configure Enterprise Server Sensor** — This is used for integrating **Fortify WebInspect** into **Fortify WebInspect Enterprise** as a sensor
+  + From the **Windows Search**, search for **Fortify Monitor**
+  +	Right-click on **Fortify Monitor** from **Show hidden icons**, and select **Configure Sensor**
+    +	Manager URL — (This is the Fortify WebInspect Enterprise URL)
+    +	Sensor Authentication - (WebInspect Enterprise machine credentials)
+      +	User Name
+      +	Password
+    + Click **Test**
+    +	Don't **Enable Proxy** if you don't have one
+    +	Click **Start** then click **OK**
 
 <br/>
 
 ### Install .NET & Java Agents (Installed on Web Server)
 + Download & extract ```WebinspectAgent_xx.x.zip```
 
-
 #### Install dotnet agent
-+ Click on ```Fortify_WebInspect_Runtime_Agent_Dotnet_xx.x.windows_x64.exe```
-+ Verify dotnet agent installation
++ Right-click ```Fortify_WebInspect_Runtime_Agent_Dotnet_xx.x.windows_x64.exe```
+  + Click **Next**
+  + Accept the license and click **Next**
+  + Choose the floder location and then click **Next**
+  + Click **Next** then click **Finish**
+  + 
++ Verify **dotnet agent** installation
   + Open cmd
-  + ```cd <install_dir>\WebInspect_RuntimeAgt_Dotnet_xx.x\tools\```
-  + ```IISControl.exe register restart```
+    + ```cd <install_dir>\WebInspect_RuntimeAgt_Dotnet_xx.x\tools\```
+    + ```IISControl.exe register restart```
     + Run a scan with Webinspect to see if the agent if detected
-
 
 #### Install java agent
 + Extract ```Fortify_Webinspect_Runtime_Agent_Java.zip``` at ```C:\Fortify_WebInspect_Runtime_Agent_Java_xx.x```
-+ Add jar file to Apache configuration
++ Add ```FortifyAgent.jar``` jar file to Apache configuration
   + ```-javaagent: <install_dir>\lib\FortifyAgent.jar```
-  + Restart Apache Tomcat
+  + Restart the Apache Tomcat
 
 
 ## Upgrade DAST Components
-+ sOOn
++ Coming soon
 
 <br/>
 
 ## Upgrade LIM
-+ sOOn
++ Coming soon
 
