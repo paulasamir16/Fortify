@@ -143,7 +143,7 @@
 
 ## Installation Best Practice
 + For a good performance, you should install the Fortify Components on separate virtual machines
-  + SSC
+  + Fortify Software Security Center (SSC)
   + LIM and DAST Components
   + Database for SSC and DAST
   + WebInspect
